@@ -1,4 +1,4 @@
-// Vista theme: a far view over misty ridges, snowy peaks, a lake and tall pines, with a moving sky, and a matching
+// Vista theme: a far view at golden hour over layers of forested ridges to distant peaks, with a low sun, a river and tall firs, and a matching
 // light color theme. The view depends only on the session's seed, so it is drawn once and never flickers.
 
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
@@ -13,16 +13,16 @@ const SEED = { plugin: 'vista-theme', key: 'seed' } as const
 const { theme, problems } = makeColors({
   label: 'Vista',
   only: 'light',
-  roles: { accent: '#1f6f8c', danger: '#b3392f', success: '#2f7a55', warning: '#a86f14', pro: '#6d4f94' },
+  roles: { accent: '#a8432c', danger: '#b3392f', success: '#2f7a55', warning: '#a86f14', pro: '#6d4f94' },
   light: {
     gray: {
       anchors: {
-        'surface-0': '#e9f1ec',
-        'surface-1': '#f1f6f1',
-        'surface-2': '#fafcf8',
-        'text-primary': '#1c2925',
-        'text-secondary': '#3f4f49',
-        'text-muted': '#56655f',
+        'surface-0': '#f3e4d0',
+        'surface-1': '#f8ecdb',
+        'surface-2': '#fff8ec',
+        'text-primary': '#2a1719',
+        'text-secondary': '#523a37',
+        'text-muted': '#6b524c',
       },
     },
   },
@@ -31,7 +31,7 @@ const { theme, problems } = makeColors({
 // The scene's name goes under `id` as well as `scene`, as the theme-examples plugin sets its own.
 const LOOK = {
   colors: theme,
-  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 3, tint: '#f6f8f1', opacity: 0.62 } },
+  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 3, tint: '#fff3df', opacity: 0.66 } },
 } as unknown as ThemeSetArgs
 
 /**
@@ -109,6 +109,6 @@ export const register: Register = on => {
 
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg isInteractive alt="A wide morning view over misty green ridges to snowy peaks, with a lake, tall pines at both sides, drifting clouds, birds and a bright sun" source={backdropSource()} />
+    return <Svg isInteractive alt="A wide golden-hour view over layers of forested ridges to distant peaks, with a low sun in a gap between them, a river, tall firs at both sides, thin clouds and birds" source={backdropSource()} />
   })
 }

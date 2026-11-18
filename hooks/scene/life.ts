@@ -50,7 +50,7 @@ function flock(seed: number, salt: number, count: number, size: number): string 
     birds += `<g transform="translate(${x} ${y}) scale(${size})"><path class="flap" style="animation-duration:${pace}s;animation-delay:-${(index * 0.17).toFixed(2)}s" d="M-10 1Q-5 -7 0 0Q5 -7 10 1"/></g>`
   }
 
-  return `<g fill="none" stroke="#2c4a50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${birds}</g>`
+  return `<g fill="none" stroke="#4a1a2c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${birds}</g>`
 }
 
 /** The near flock crosses the sky left to right. The far one, smaller, goes the other way low over the peaks. */
@@ -64,7 +64,7 @@ export function farFlock(seed: number): string {
 
 /** An eagle gliding in a wide slow circle, seen from far below. */
 export function eagle(): string {
-  return '<g class="soar"><path d="M0 -3C-9 -6 -27 -8 -42 -2C-29 -2 -14 2 -4 4L-3 11L0 7L3 11L4 4C14 2 29 -2 42 -2C27 -8 9 -6 0 -3Z" fill="#2c4a50" transform="scale(.62)"/></g>'
+  return '<g class="soar"><path d="M0 -3C-9 -6 -27 -8 -42 -2C-29 -2 -14 2 -4 4L-3 11L0 7L3 11L4 4C14 2 29 -2 42 -2C27 -8 9 -6 0 -3Z" fill="#4a1a2c" transform="scale(.62)"/></g>'
 }
 
 /** Specks of light that rise and fade, as pollen does in a sunbeam. */
@@ -79,5 +79,5 @@ export function motes(seed: number): string {
     specks += `<circle class="mote" style="animation-duration:${pace.toFixed(1)}s;animation-delay:-${(pace * chance(seed, index, 94)).toFixed(1)}s" cx="${x}" cy="${y}" r="${between(1.2, 2.6, chance(seed, index, 95)).toFixed(1)}"/>`
   }
 
-  return `<g fill="#fff8dc">${specks}</g>`
+  return `<g fill="#ffe6a8">${specks}</g>`
 }

@@ -2,7 +2,7 @@
 
 export const WIDTH = 1600
 export const HEIGHT = 1000
-export const SUN = { x: 1392, y: 212 } as const
+export const SUN = { x: 1340, y: 418, size: 60 } as const
 
 /** A fixed pseudo-random number from 0 to 1, so a session's seed always draws the same view. */
 export function chance(seed: number, index: number, salt = 0): number {
@@ -14,8 +14,4 @@ export function chance(seed: number, index: number, salt = 0): number {
 
 export function between(low: number, high: number, share: number): number {
   return low + (high - low) * share
-}
-
-export function round(value: number): number {
-  return Math.round(value * 10) / 10
 }

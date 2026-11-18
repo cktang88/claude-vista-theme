@@ -1,7 +1,7 @@
 {
   "name": "vista-theme",
   "version": "1.0.0",
-  "description": "Vista theme: a wide morning view for the Claude desktop app. Misty green ridges, snowy peaks, a lake and tall pines behind the chat, with drifting clouds, birds, an eagle and a bright sun.",
+  "description": "Vista theme: a wide golden-hour view for the Claude desktop app. Layers of forested ridges fade into warm haze toward distant peaks, with a low sun, a river, tall firs, thin clouds, birds and an eagle.",
   "types": "./types/index.d.ts",
   "author": {
     "name": "cktang88"
