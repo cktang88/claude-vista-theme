@@ -1,6 +1,6 @@
 # Vista theme for the Claude desktop app
 
-A quiet view in ink grays, after old Chinese mountain paintings, drawn in a clean modern way. Steep peaks stand out of a sea of mist like islands: pale and soft far away, tall and dark near you, with tiny firs on their ledges and ribbons of mist across their waists.
+A quiet view in ink grays, after old Chinese mountain paintings, drawn in a clean modern way. Steep peaks stand out of a sea of mist like islands: pale and soft far away, taller and a little darker near you, with tiny firs on their ledges and ribbons of mist across their waists.
 
 ![steep gray peaks standing out of a sea of mist, the tall ones at both sides, and calm empty sky in the middle](docs/preview.gif)
 
@@ -15,7 +15,7 @@ These are the old painters' means, kept; the antique look (seals, brush texture,
 - **Emptiness.** Most of the page is unpainted. The eye rests in it.
 - **Thin ink.** Each farther range is paler and softer, and every peak fades into mist at its foot.
 - **Gray only.** No strong color anywhere. The sun is just a white disc in the haze, so it never pulls the eye.
-- **One dark note.** The firs on the near ledge, in the corners, so the rest reads as light and far.
+- **Low contrast.** Even the nearest firs and rock are a soft mid gray, never black, so nothing jars against the pale page.
 - **Stillness.** The mist rolls slowly, ribbons of it drift across the peaks, and a few birds cross.
 
 ## A new view every session

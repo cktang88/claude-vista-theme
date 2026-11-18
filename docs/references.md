@@ -100,6 +100,6 @@ So the two were joined: the steep peaks, mist ribbons, tiny firs and sea of clou
 2. The middle is empty on purpose. The words sit there.
 3. Steep peaks are welcome, but only at the sides.
 4. Farther is paler and softer. Every peak dissolves into mist at its foot.
-5. One dark accent (the near firs), in the corners.
+5. Low contrast everywhere: the darkest thing is a soft mid gray, never black. Dark near peaks and black firs were tried and felt jarring.
 6. Never put a light source or its rays behind the words, and never let it be the brightest or most colored thing on screen.
 7. Slow motion only: rolling mist, a few birds.

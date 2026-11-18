@@ -32,7 +32,7 @@ export function sceneSvg(seed: number): string {
     nearFlock(seed) +
     eagle() +
     ledgeShape() +
-    `<g fill="#252d32" stroke="#a9b8bd" stroke-opacity=".35" stroke-width="1.2">${pines(seed)}</g>` +
+    `<g fill="#6b7980" stroke="#c9d3d6" stroke-opacity=".5" stroke-width="1.2">${pines(seed)}</g>` +
     '</svg>'
   )
 }

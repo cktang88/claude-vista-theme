@@ -26,32 +26,32 @@ export const RANGES: readonly Range[] = [
   {
     floor: 704,
     steep: 1.3,
-    rock: '#d2d9db',
-    foot: '#e6eaea',
+    rock: '#dfe4e5',
+    foot: '#ecefee',
     peaks: [{ x: 330, reach: 250, rise: 250 }, { x: 590, reach: 150, rise: 100 }, { x: 870, reach: 170, rise: 60 }, { x: 1150, reach: 210, rise: 130 }, { x: 1590, reach: 260, rise: 330 }],
   },
   {
     floor: 736,
     steep: 1.15,
-    rock: '#b3bec2',
-    foot: '#d8dede',
+    rock: '#cbd3d5',
+    foot: '#e3e7e7',
     peaks: [{ x: 190, reach: 210, rise: 340 }, { x: 470, reach: 130, rise: 160 }, { x: 1040, reach: 120, rise: 52 }, { x: 1300, reach: 150, rise: 190 }],
   },
   {
     floor: 778,
     steep: 0.95,
-    rock: '#7c8b92',
-    foot: '#c6ced0',
-    lit: '#a7b3b8',
+    rock: '#aab5b9',
+    foot: '#d9dedf',
+    lit: '#c7cfd1',
     firs: { spacing: 16, low: 6, high: 13 },
     peaks: [{ x: 70, reach: 200, rise: 430 }, { x: 640, reach: 100, rise: 44 }, { x: 1560, reach: 210, rise: 500 }],
   },
   {
     floor: 826,
     steep: 0.8,
-    rock: '#414f56',
-    foot: '#aab4b7',
-    lit: '#75868d',
+    rock: '#8a979e',
+    foot: '#cbd2d4',
+    lit: '#adb8bc',
     firs: { spacing: 13, low: 9, high: 24 },
     peaks: [{ x: -20, reach: 190, rise: 540 }, { x: 320, reach: 96, rise: 150 }, { x: 1266, reach: 84, rise: 210 }, { x: 1466, reach: 196, rise: 580 }],
   },
@@ -172,7 +172,7 @@ function cracks(seed: number, index: number, line: Skyline): string {
     }
   })
 
-  return `<path d="${lines}" fill="none" stroke="#263035" stroke-opacity=".3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`
+  return `<path d="${lines}" fill="none" stroke="#66747b" stroke-opacity=".3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`
 }
 
 /** Firs on the ledges, small against the rock, which is what shows how big the peaks are. */
@@ -206,7 +206,7 @@ export function range(seed: number, index: number): string {
   return (
     `<path d="M-40 ${shape.floor + 70}L${edge.join('L')}L${WIDTH + 40} ${shape.floor + 70}Z" fill="url(#rock${index})"${index < 2 ? ` filter="url(#far${index})"` : ''}/>` +
     (shape.lit === undefined ? '' : sunlit(seed, index, line) + cracks(seed, index, line)) +
-    (shape.firs === undefined ? '' : `<path d="${ledgeFirs(seed, index, line, shape.firs)}" fill="#263035"/>`)
+    (shape.firs === undefined ? '' : `<path d="${ledgeFirs(seed, index, line, shape.firs)}" fill="#6f7c83"/>`)
   )
 }
 
@@ -229,5 +229,5 @@ export function ledgeShape(): string {
     edge.push(`${x} ${Math.round(ledge(x))}`)
   }
 
-  return `<path d="M-20 1010L${edge.join('L')}L${WIDTH + 20} 1010Z" fill="#252d32"/>`
+  return `<path d="M-20 1010L${edge.join('L')}L${WIDTH + 20} 1010Z" fill="#6b7980"/>`
 }
