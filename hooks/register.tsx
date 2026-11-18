@@ -31,7 +31,7 @@ const { theme, problems } = makeColors({
 // The scene's name goes under `id` as well as `scene`, as the theme-examples plugin sets its own.
 const LOOK = {
   colors: theme,
-  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 3, tint: '#fff3df', opacity: 0.66 } },
+  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 2, tint: '#fff6e6', opacity: 0.45 } },
 } as unknown as ThemeSetArgs
 
 /**

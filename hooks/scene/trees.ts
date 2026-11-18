@@ -1,7 +1,7 @@
 // The near trees: tall dark firs that stand highest at both sides and frame the view, a few bare snags among
 // them, and grass along the edge of the near slope.
 
-import { WIDTH, between, chance } from './kit'
+import { SUN, WIDTH, between, chance } from './kit'
 import { fir } from './fir'
 import { NEAREST, RIDGES, skyline } from './land'
 
@@ -30,7 +30,10 @@ export function pines(seed: number): string {
     const x = Math.round(-14 + index * 72 + 54 * chance(seed, index, 61))
     const side = Math.abs(x - WIDTH / 2) / (WIDTH / 2)
 
-    trees.push({ x, height: Math.round((120 + 500 * side ** 2.2) * between(0.6, 1.15, chance(seed, index, 62))), index })
+    // The firs stay low right under the sun, so it shows between the tall ones.
+    const clear = Math.min(1, 0.3 + Math.abs(x - SUN.x) / 170)
+
+    trees.push({ x, height: Math.round((120 + 500 * side ** 2.2) * between(0.6, 1.15, chance(seed, index, 62)) * clear), index })
   }
 
   // The shorter trees are drawn first, so the tall ones stand in front.
@@ -41,7 +44,7 @@ export function pines(seed: number): string {
       const isSnag = height > 200 && chance(seed, index, 63) < 0.14
       const shape = isSnag
         ? snag(seed, index, x, foot, Math.round(height * 0.7))
-        : fir(seed, 9000 + index, x, foot, height, Math.min(34, Math.max(10, Math.round(height / 14))), between(0.85, 1.2, chance(seed, index, 64)))
+        : fir(seed, 9000 + index, x, foot, height, Math.min(32, Math.max(10, Math.round(height / 15))), between(0.85, 1.2, chance(seed, index, 64)))
       const pace = between(6, 10, chance(seed, index, 52)).toFixed(1)
 
       return `<path class="sway" style="transform-origin:${x}px ${foot}px;animation-duration:${pace}s;animation-delay:-${between(0, 9, chance(seed, index, 53)).toFixed(1)}s" d="${shape}"/>`

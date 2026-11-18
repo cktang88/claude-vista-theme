@@ -20,14 +20,15 @@ export type Ridge = {
 }
 
 export const RIDGES: readonly Ridge[] = [
-  { base: 512, lift: 0, swell: 12, jag: 255, grain: 150, top: '#f6b578', foot: '#fbd6a6' },
-  { base: 545, lift: 0, swell: 18, jag: 115, grain: 110, top: '#f09d60', foot: '#f9c794' },
-  { base: 588, lift: 0, swell: 26, jag: 62, grain: 80, top: '#e6814c', foot: '#f4b17e' },
-  { base: 634, lift: 14, swell: 32, jag: 22, grain: 60, top: '#d5633e', foot: '#eb9a69', forest: { spacing: 10, low: 7, high: 17, tiers: 2 } },
-  { base: 684, lift: 40, swell: 34, jag: 0, grain: 60, top: '#b74739', foot: '#da7b55', forest: { spacing: 12, low: 14, high: 34, tiers: 3 } },
-  { base: 744, lift: 80, swell: 30, jag: 0, grain: 60, top: '#8f303a', foot: '#bd5948', forest: { spacing: 18, low: 26, high: 62, tiers: 5 } },
-  { base: 818, lift: 150, swell: 24, jag: 0, grain: 60, top: '#611e35', foot: '#883041', forest: { spacing: 25, low: 40, high: 130, tiers: 10 } },
-  { base: 918, lift: 265, swell: 14, jag: 0, grain: 60, top: '#2f1025', foot: '#3c1530' },
+  { base: 478, lift: 0, swell: 10, jag: 170, grain: 230, top: '#f8c48c', foot: '#fcdcae' },
+  { base: 512, lift: 0, swell: 12, jag: 255, grain: 150, top: '#f5b174', foot: '#fbd3a0' },
+  { base: 548, lift: 0, swell: 18, jag: 115, grain: 110, top: '#ef9a5c', foot: '#f8c490' },
+  { base: 590, lift: 0, swell: 26, jag: 62, grain: 80, top: '#e57f49', foot: '#f3ae7a' },
+  { base: 636, lift: 14, swell: 32, jag: 22, grain: 60, top: '#d4623c', foot: '#ea9866', forest: { spacing: 12, low: 7, high: 17, tiers: 2 } },
+  { base: 690, lift: 50, swell: 34, jag: 0, grain: 60, top: '#b74a36', foot: '#d97a52', forest: { spacing: 14, low: 14, high: 34, tiers: 3 } },
+  { base: 752, lift: 100, swell: 30, jag: 0, grain: 60, top: '#923635', foot: '#bd5c45', forest: { spacing: 19, low: 26, high: 62, tiers: 5 } },
+  { base: 872, lift: 232, swell: 24, jag: 0, grain: 60, top: '#66242d', foot: '#8c3539', forest: { spacing: 26, low: 40, high: 130, tiers: 9 } },
+  { base: 996, lift: 366, swell: 12, jag: 0, grain: 60, top: '#30131b', foot: '#3e1922' },
 ]
 
 export const NEAREST = RIDGES.length - 1
@@ -70,18 +71,21 @@ function edge(line: Skyline, step: number): string {
 }
 
 /** The forest on a layer's edge: firs of uneven height, with gaps, in the layer's own color. */
-function forest(seed: number, index: number, line: Skyline, wood: Forest): string {
+function forest(seed: number, index: number, line: Skyline, wood: Forest, thin: number): string {
+  const spacing = wood.spacing * thin
   let trees = ''
 
-  for (let tree = 0; tree * wood.spacing < WIDTH + 40; tree += 1) {
-    const x = -20 + (tree + chance(seed, tree, 41 + index)) * wood.spacing
+  for (let tree = 0; tree * spacing < WIDTH + 40; tree += 1) {
+    const x = -20 + (tree + chance(seed, tree, 41 + index)) * spacing
     const isClearing = Math.sin(x / 170 + chance(seed, index, 42) * 6) > 0.72
 
     if (isClearing && chance(seed, tree, 43 + index) < 0.8) {
       continue
     }
 
-    const height = between(wood.low, wood.high, chance(seed, tree, 44 + index) ** 1.6)
+    // Trees in the middle of the valley are farther off, so they are smaller. That also keeps the middle light.
+    const far = 0.45 + 0.55 * Math.min(1, (Math.abs(x - WIDTH / 2) / (WIDTH / 2)) * 2)
+    const height = between(wood.low, wood.high, chance(seed, tree, 44 + index) ** 1.6) * far
 
     trees += fir(seed, index * 1000 + tree, x, line(x) + 4, height, wood.tiers, between(0.8, 1.3, chance(seed, tree, 45 + index)))
   }
@@ -97,12 +101,14 @@ export function ridgeFills(): string {
   }).join('')
 }
 
-export function ridge(seed: number, index: number): string {
+/** One layer. The bare far ranges get a thin bright edge where the low sun catches them. `thin` spaces the forest out. */
+export function ridge(seed: number, index: number, thin = 1): string {
   const shape = RIDGES[index]!
   const line = skyline(seed, index)
-  const trees = shape.forest === undefined ? '' : forest(seed, index, line, shape.forest)
+  const trees = shape.forest === undefined ? '' : forest(seed, index, line, shape.forest, thin)
+  const glow = shape.forest === undefined && index !== NEAREST ? ' stroke="#ffe9bb" stroke-opacity=".6" stroke-width="1.4"' : ''
 
-  return `<path d="M-20 1010L${edge(line, shape.jag > 0 ? 8 : 14)}L${WIDTH + 20} 1010Z${trees}" fill="url(#ridge${index})"/>`
+  return `<path d="M-20 1010L${edge(line, shape.jag > 0 ? 8 : 14)}L${WIDTH + 20} 1010Z${trees}" fill="url(#ridge${index})"${glow}/>`
 }
 
 /** A river that winds toward us through the valley and carries the sky's light. Sun glitters on it. */
@@ -111,20 +117,20 @@ export function river(seed: number): string {
 
   for (let index = 0; index < 14; index += 1) {
     const along = chance(seed, index, 31)
-    const x = between(1030, 760, along) + between(-40, 40, chance(seed, index, 32))
-    const y = between(768, 842, along)
+    const x = between(930, 700, along) + between(-40, 40, chance(seed, index, 32))
+    const y = between(776, 900, along)
     const pace = between(1.6, 4.2, chance(seed, index, 34))
 
     glints += `<path class="glint" style="animation-duration:${pace.toFixed(1)}s;animation-delay:-${(pace * chance(seed, index, 35)).toFixed(1)}s" d="M${Math.round(x)} ${Math.round(y)}h${Math.round(between(5, 18, chance(seed, index, 33)))}"/>`
   }
 
   return (
-    '<path d="M1042 748C1000 760 1100 774 1010 790C900 808 800 816 640 870L930 870C1000 836 1150 812 1128 786C1112 768 1070 762 1066 748Z" fill="url(#river)"/>' +
+    '<path d="M930 756C880 768 990 784 900 802C800 822 700 842 520 930L900 930C960 880 1070 830 1040 798C1026 780 962 772 956 756Z" fill="url(#river)"/>' +
     `<g stroke="#fffaf0" stroke-width="1.5" stroke-linecap="round">${glints}</g>`
   )
 }
 
-/** A soft band of fog that drifts slowly sideways. */
-export function mist(x: number, y: number, width: number, pace: number, strength = 1): string {
-  return `<ellipse class="mist" style="animation-duration:${pace}s;animation-delay:-${Math.round(pace / 3)}s" cx="${x}" cy="${y}" rx="${width}" ry="${Math.round(width / 15)}" fill="url(#mist)" fill-opacity="${strength}"/>`
+/** A bank of sunlit fog that fills the valley and drifts slowly sideways. The ridges stand out of it at the sides. */
+export function fog(x: number, y: number, width: number, depth: number, pace: number, strength = 1): string {
+  return `<ellipse class="mist" style="animation-duration:${pace}s;animation-delay:-${Math.round(pace / 3)}s" cx="${x}" cy="${y}" rx="${width}" ry="${depth}" fill="url(#mist)" fill-opacity="${strength}"/>`
 }

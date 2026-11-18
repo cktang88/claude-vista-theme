@@ -1,8 +1,10 @@
 // Shared by every part of the scene: the picture's size, where the sun stands, and small drawing helpers.
+// The sun stands behind the middle, where the app lays the chat: the words then sit on the brightest, calmest
+// part of the view, and the dark trees and deep color keep to the sides, where nothing covers them.
 
 export const WIDTH = 1600
 export const HEIGHT = 1000
-export const SUN = { x: 1340, y: 418, size: 60 } as const
+export const SUN = { x: 900, y: 428, size: 56 } as const
 
 /** A fixed pseudo-random number from 0 to 1, so a session's seed always draws the same view. */
 export function chance(seed: number, index: number, salt = 0): number {

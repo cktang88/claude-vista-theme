@@ -59,3 +59,4 @@ Real photographs (Grand Teton from the Snake River, Yosemite's Tunnel View, laye
 5. Tall dark firs at both sides, so you look out from shelter.
 6. Tiny birds against huge mountains, to give the scale.
 7. Slow motion only: nothing that pulls the eye away from reading.
+8. The app lays the chat over the middle of the window and cannot be moved by a theme. So the middle holds the light (sun, bloom, valley fog) and the sides hold the dark trees and the detail. That keeps dark text readable with a thin veil.

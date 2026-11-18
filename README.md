@@ -1,6 +1,6 @@
 # Vista theme for the Claude desktop app
 
-A far view for the Code tab, at golden hour. You stand among tall firs and look out over layer after layer of forested ridges that fade into warm haze, all the way to distant peaks. A low sun sits in a gap between them, and a river carries its light through the valley.
+A far view for the Code tab, at golden hour. You stand among tall firs and look out over layer after layer of forested ridges that fade into warm haze, all the way to distant peaks. A low sun sits in a gap between them, fog glows in the valley, and a river carries the light toward you.
 
 ![a wide golden-hour view over layers of forested ridges to distant peaks, with a low sun, a river, tall firs, thin clouds and birds](docs/preview.gif)
 
@@ -16,7 +16,7 @@ A far view for the Code tab, at golden hour. You stand among tall firs and look 
 
 Each session draws its own view from its own seed (taken from when the session started): the shape of every ridge and peak, where the forest stands and where it opens, how the clouds lie. The view is drawn once and then left alone, so nothing flickers while Claude works.
 
-The colors are a light theme with dark text. The chat column is lightly frosted, so text stays easy to read over the view.
+The colors are a light theme with dark text. The sun and the valley fog sit behind the middle of the window, where the app lays the chat, so the words rest on the brightest, calmest part of the view and only a thin veil is needed. The tall firs and the deep colors keep to the sides, where nothing covers them.
 
 ## Install
 
