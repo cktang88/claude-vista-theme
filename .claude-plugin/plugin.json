@@ -1,7 +1,7 @@
 {
   "name": "vista-theme",
-  "version": "3.0.0",
-  "description": "Vista theme: a quiet ink-wash view in grays for the Claude desktop app. Low misty hills, a wide empty water, a pale sun and a few thin trees in one corner. The middle is left empty, so the chat reads cleanly over it.",
+  "version": "3.1.0",
+  "description": "Vista theme: steep peaks standing out of a sea of mist, in quiet ink grays, for the Claude desktop app. The tall peaks keep to the sides and the middle is left empty, so the chat reads cleanly over it.",
   "types": "./types/index.d.ts",
   "author": {
     "name": "cktang88"

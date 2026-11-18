@@ -1,42 +1,49 @@
-// The paper, a pale sun, and the mist: soft bands that lie along the feet of the hills and across the water and
-// drift very slowly. Most of the picture is left empty on purpose.
+// The sky: a calm gray gradient, a sun that is only a white disc in the haze (nothing bright or colored, so it
+// never pulls the eye), and thin streaks of high cloud.
 
-import { INK, PAPER, SUN, WATER, WIDTH, between, chance } from './kit'
+import { SUN, WIDTH, between, chance } from './kit'
 
 export const SKY_STYLE =
-  '.roll{animation:roll ease-in-out infinite alternate}' +
-  '@keyframes roll{from{transform:translateX(-90px)}to{transform:translateX(90px)}}' +
-  '.breathe{animation:breathe ease-in-out infinite alternate}' +
-  '@keyframes breathe{from{opacity:.25}to{opacity:1}}'
+  '.drift{animation:drift linear infinite}' +
+  '@keyframes drift{from{transform:translateX(-420px)}to{transform:translateX(2020px)}}'
 
 export function skyFills(): string {
   return (
-    `<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6eaeb"/><stop offset=".5" stop-color="${PAPER}"/><stop offset="1" stop-color="#e9eced"/></linearGradient>` +
-    `<radialGradient id="mist"><stop offset="0" stop-color="${PAPER}" stop-opacity=".96"/><stop offset=".6" stop-color="${PAPER}" stop-opacity=".7"/><stop offset="1" stop-color="${PAPER}" stop-opacity="0"/></radialGradient>` +
-    '<radialGradient id="sun"><stop offset="0" stop-color="#d9c2b7"/><stop offset=".82" stop-color="#d9c2b7" stop-opacity=".92"/><stop offset="1" stop-color="#d9c2b7" stop-opacity="0"/></radialGradient>'
+    '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe2e4"/><stop offset=".45" stop-color="#e8ecec"/><stop offset="1" stop-color="#f3f5f4"/></linearGradient>' +
+    '<radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>' +
+    '<radialGradient id="mist"><stop offset="0" stop-color="#f7f9f8" stop-opacity=".95"/><stop offset=".6" stop-color="#f1f4f3" stop-opacity=".7"/><stop offset="1" stop-color="#f1f4f3" stop-opacity="0"/></radialGradient>' +
+    '<linearGradient id="streak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c3ced3"/><stop offset="1" stop-color="#f4f6f5"/></linearGradient>'
   )
 }
 
-export function paper(): string {
-  return `<rect x="-20" y="-20" width="${WIDTH + 40}" height="1040" fill="url(#paper)"/><circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size}" fill="url(#sun)"/>`
+export function sky(): string {
+  return (
+    `<rect x="-20" y="-20" width="${WIDTH + 40}" height="760" fill="url(#sky)"/>` +
+    `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size * 2.6}" fill="url(#glow)"/>` +
+    `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size}" fill="#fbfcfb"/>`
+  )
 }
 
-/** One soft band of mist. */
-export function mist(x: number, y: number, half: number, thick: number, pace: number): string {
-  return `<ellipse class="roll" style="animation-duration:${pace}s;animation-delay:-${Math.round(pace / 3)}s" cx="${x}" cy="${y}" rx="${half}" ry="${thick}" fill="url(#mist)"/>`
+function lens(x: number, y: number, half: number, thick: number): string {
+  return `M${x - half} ${y}C${x - half / 2} ${y - thick} ${x + half / 2} ${y - thick} ${x + half} ${y}C${x + half / 2} ${Math.round(y + thick * 0.45)} ${x - half / 2} ${Math.round(y + thick * 0.45)} ${x - half} ${y}Z`
 }
 
-/** A few faint lines on the water that come and go, the only sign that it is water. */
-export function ripples(seed: number): string {
-  let lines = ''
+/** Thin clouds in long streaks high up, rosy on top and gold underneath. They cross very slowly. */
+export function streaks(seed: number): string {
+  let all = ''
 
-  for (let index = 0; index < 12; index += 1) {
-    const x = Math.round(between(120, 1300, chance(seed, index, 31)))
-    const y = Math.round(between(WATER + 40, 960, chance(seed, index, 32)))
-    const pace = between(9, 18, chance(seed, index, 34))
+  for (let index = 0; index < 7; index += 1) {
+    const y = Math.round(between(40, 300, chance(seed, index, 24)))
+    const half = Math.round(between(150, 360, chance(seed, index, 21)))
+    const thick = Math.round(between(7, 18, chance(seed, index, 22)))
+    const pace = Math.round(between(560, 940, chance(seed, index, 26)))
+    const shape =
+      lens(0, y, half, thick) +
+      lens(Math.round(half * 0.5), y + Math.round(thick * 0.7), Math.round(half * 0.6), Math.round(thick * 0.6)) +
+      lens(Math.round(-half * 0.55), y - Math.round(thick * 0.6), Math.round(half * 0.5), Math.round(thick * 0.5))
 
-    lines += `<path class="breathe" style="animation-duration:${pace.toFixed(1)}s;animation-delay:-${(pace * chance(seed, index, 35)).toFixed(1)}s" d="M${x} ${y}h${Math.round(between(50, 200, chance(seed, index, 33)))}"/>`
+    all += `<path class="drift" style="animation-duration:${pace}s;animation-delay:-${Math.round(pace * ((index + chance(seed, index, 27)) / 7))}s" d="${shape}" fill="url(#streak)" fill-opacity="${between(0.35, 0.7, chance(seed, index, 28)).toFixed(2)}"/>`
   }
 
-  return `<g stroke="${INK}" stroke-opacity=".16" stroke-width="1.2" stroke-linecap="round">${lines}</g>`
+  return all
 }

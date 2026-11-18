@@ -1,6 +1,6 @@
-// Vista theme: a quiet ink-wash view in grays. Low misty hills, a wide empty water, and a few thin trees on a
-// near bank in one corner, with a matching light color theme. The middle is left empty, because the app lays the
-// chat there. The view depends only on the session's seed, so it is drawn once and never flickers.
+// Vista theme: steep peaks standing out of a sea of mist, in quiet ink grays, with a matching light color theme.
+// The tall peaks keep to the sides and the middle is left empty, because the app lays the chat there. The view
+// depends only on the session's seed, so it is drawn once and never flickers.
 
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
 
@@ -110,6 +110,6 @@ export const register: Register = on => {
 
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg isInteractive alt="A quiet ink-wash view in grays: low misty hills fading into a wide empty water, a pale sun, and a few thin trees on a near bank in the bottom right corner" source={backdropSource()} />
+    return <Svg isInteractive alt="Steep gray peaks standing out of a sea of mist, the tall ones at both sides with small firs on their ledges, and calm empty sky in the middle" source={backdropSource()} />
   })
 }

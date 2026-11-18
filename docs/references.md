@@ -88,12 +88,18 @@ Techniques, and how each is done here:
 
 Left out on purpose, to keep it modern: seals, inscriptions, brush-texture strokes, yellowed paper, boats and pavilions.
 
+## The fifth try: the steep peaks, in ink grays
+
+The level-distance version (low hills, flat water, thin trees) was calm, but the steep peaks of the sea-of-clouds version were liked better. The pale red sun of the level version was called distracting.
+
+So the two were joined: the steep peaks, mist ribbons, tiny firs and sea of cloud from the third try, in the gray ink of the fourth. The sun is now only a white disc in the haze, with no color and no rays. The two farthest ranges are slightly blurred; the app kept the picture moving with that blur when measured.
+
 ## Rules this theme follows
 
-1. Gray ink on cool paper. One small muted warm note (the sun). No orange.
+1. Gray ink on cool paper. No strong color at all, the sun included.
 2. The middle is empty on purpose. The words sit there.
-3. Long flat lines and low rounded hills. Nothing tall or sharp.
-4. Farther is paler and softer. Every row dissolves at its foot.
-5. One dark accent, in a corner.
-6. Never put a light source or its rays behind the words.
-7. Almost still: slow mist, faint ripples, one slow line of geese.
+3. Steep peaks are welcome, but only at the sides.
+4. Farther is paler and softer. Every peak dissolves into mist at its foot.
+5. One dark accent (the near firs), in the corners.
+6. Never put a light source or its rays behind the words, and never let it be the brightest or most colored thing on screen.
+7. Slow motion only: rolling mist, a few birds.
