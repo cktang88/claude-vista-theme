@@ -1,4 +1,5 @@
-// Vista theme: steep peaks standing out of a sea of mist, in quiet ink grays, with a matching light color theme.
+// Vista theme: steep peaks standing out of a sea of mist, in soft blue and green on warm white, with a matching light
+// color theme.
 // The tall peaks keep to the sides and the middle is left empty, because the app lays the chat there. The view
 // depends only on the session's seed, so it is drawn once and never flickers.
 
@@ -14,16 +15,16 @@ const SEED = { plugin: 'vista-theme', key: 'seed' } as const
 const { theme, problems } = makeColors({
   label: 'Vista',
   only: 'light',
-  roles: { accent: '#3d5a6c', danger: '#b3392f', success: '#2f7a55', warning: '#a86f14', pro: '#6d4f94' },
+  roles: { accent: '#2c6c7a', danger: '#b3392f', success: '#2f7a55', warning: '#a86f14', pro: '#6d4f94' },
   light: {
     gray: {
       anchors: {
-        'surface-0': '#e4e8e8',
-        'surface-1': '#eef0ef',
-        'surface-2': '#f8f9f8',
-        'text-primary': '#1c2123',
-        'text-secondary': '#3c464a',
-        'text-muted': '#556065',
+        'surface-0': '#e5edee',
+        'surface-1': '#eff4f3',
+        'surface-2': '#f9faf7',
+        'text-primary': '#1a2427',
+        'text-secondary': '#394a4f',
+        'text-muted': '#52646a',
       },
     },
   },
@@ -32,7 +33,7 @@ const { theme, problems } = makeColors({
 // The scene's name goes under `id` as well as `scene`, as the theme-examples plugin sets its own.
 const LOOK = {
   colors: theme,
-  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 1, tint: '#eef0ef', opacity: 0.3 } },
+  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 1, tint: '#f1f5f3', opacity: 0.3 } },
 } as unknown as ThemeSetArgs
 
 /**
@@ -110,6 +111,6 @@ export const register: Register = on => {
 
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg isInteractive alt="Steep gray peaks standing out of a sea of mist, the tall ones at both sides with small firs on their ledges, and calm empty sky in the middle" source={backdropSource()} />
+    return <Svg isInteractive alt="Steep blue and green peaks standing out of a sea of white mist, the tall ones at both sides with small firs on their ledges, and calm empty sky in the middle" source={backdropSource()} />
   })
 }

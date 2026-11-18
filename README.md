@@ -1,8 +1,8 @@
 # Vista theme for the Claude desktop app
 
-A quiet view in ink grays, after old Chinese mountain paintings, drawn in a clean modern way. Steep peaks stand out of a sea of mist like islands: pale and soft far away, taller and a little darker near you, with tiny firs on their ledges and ribbons of mist across their waists.
+A quiet view after old Chinese mountain paintings, drawn in a clean modern way, in the soft blue and green those painters used for rock (the "blue-green" manner) on warm white. Steep peaks stand out of a sea of mist like islands: pale blue and soft far away, taller near you with a pale green sunlit side and a dusty blue shaded side, with tiny firs on their ledges and ribbons of mist across their waists.
 
-![steep gray peaks standing out of a sea of mist, the tall ones at both sides, and calm empty sky in the middle](docs/preview.gif)
+![steep blue and green peaks standing out of a sea of mist, the tall ones at both sides, and calm empty sky in the middle](docs/preview.gif)
 
 ## Made to sit behind a conversation
 
@@ -13,16 +13,16 @@ The app lays the chat down the middle of the window, and a theme cannot move it.
 These are the old painters' means, kept; the antique look (seals, brush texture, yellowed paper) is left out.
 
 - **Emptiness.** Most of the page is unpainted. The eye rests in it.
-- **Thin ink.** Each farther range is paler and softer, and every peak fades into mist at its foot.
-- **Gray only.** No strong color anywhere. The sun is just a white disc in the haze, so it never pulls the eye.
-- **Low contrast.** Even the nearest firs and rock are a soft mid gray, never black, so nothing jars against the pale page.
+- **Thin color.** Each farther range is paler and softer, and every peak fades into mist at its foot.
+- **Light color only.** Dusty blue, pale green and warm white. Nothing strong, nothing gray and dead. The sun is just a cream disc in the haze, so it never pulls the eye.
+- **Low contrast.** Even the nearest firs and rock are a soft mid tone, never black, so nothing jars against the pale page.
 - **Stillness.** The mist rolls slowly, ribbons of it drift across the peaks, and a few birds cross.
 
 ## A new view every session
 
 Each session draws its own view from its own seed (taken from when the session started): the outline of every peak, its side summits and cracks, where the firs stand, how the mist lies. The view is drawn once and then left alone, so nothing flickers while Claude works.
 
-The colors are a light theme in cool grays with dark text.
+The colors are a light theme in pale blue-green whites with dark text.
 
 ## Install
 

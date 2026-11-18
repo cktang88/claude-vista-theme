@@ -1,4 +1,4 @@
-// The sky: a calm gray gradient, a sun that is only a white disc in the haze (nothing bright or colored, so it
+// The sky: pale blue above, warm white near the mist, a sun that is only a soft cream disc in the haze (so it
 // never pulls the eye), and thin streaks of high cloud.
 
 import { SUN, WIDTH, between, chance } from './kit'
@@ -9,10 +9,10 @@ export const SKY_STYLE =
 
 export function skyFills(): string {
   return (
-    '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe2e4"/><stop offset=".45" stop-color="#e8ecec"/><stop offset="1" stop-color="#f3f5f4"/></linearGradient>' +
-    '<radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>' +
+    '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3e4ee"/><stop offset=".5" stop-color="#e8f0f1"/><stop offset="1" stop-color="#f8f6ee"/></linearGradient>' +
+    '<radialGradient id="glow"><stop offset="0" stop-color="#fff4d9" stop-opacity=".85"/><stop offset="1" stop-color="#fff4d9" stop-opacity="0"/></radialGradient>' +
     '<radialGradient id="mist"><stop offset="0" stop-color="#f7f9f8" stop-opacity=".95"/><stop offset=".6" stop-color="#f1f4f3" stop-opacity=".7"/><stop offset="1" stop-color="#f1f4f3" stop-opacity="0"/></radialGradient>' +
-    '<linearGradient id="streak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c3ced3"/><stop offset="1" stop-color="#f4f6f5"/></linearGradient>'
+    '<linearGradient id="streak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bdd3e0"/><stop offset="1" stop-color="#fbf8ee"/></linearGradient>'
   )
 }
 
@@ -20,7 +20,7 @@ export function sky(): string {
   return (
     `<rect x="-20" y="-20" width="${WIDTH + 40}" height="760" fill="url(#sky)"/>` +
     `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size * 2.6}" fill="url(#glow)"/>` +
-    `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size}" fill="#fbfcfb"/>`
+    `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size}" fill="#fffaec"/>`
   )
 }
 

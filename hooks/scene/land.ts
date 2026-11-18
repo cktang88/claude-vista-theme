@@ -1,5 +1,5 @@
 // The land: peaks that stand out of a sea of clouds like islands. The far ones are pale and small; the near ones
-// are tall, lighter on the side that faces the sun and dark ink in shade, with firs on their ledges. Every peak
+// are tall, soft green on the side that faces the sun and dusty blue in shade, with firs on their ledges. Every peak
 // fades into cloud at its foot. The tall peaks keep to the sides of the picture.
 
 import { SUN, WIDTH, between, chance } from './kit'
@@ -26,32 +26,32 @@ export const RANGES: readonly Range[] = [
   {
     floor: 704,
     steep: 1.3,
-    rock: '#dfe4e5',
-    foot: '#ecefee',
+    rock: '#d5e2ea',
+    foot: '#e9f0f2',
     peaks: [{ x: 330, reach: 250, rise: 250 }, { x: 590, reach: 150, rise: 100 }, { x: 870, reach: 170, rise: 60 }, { x: 1150, reach: 210, rise: 130 }, { x: 1590, reach: 260, rise: 330 }],
   },
   {
     floor: 736,
     steep: 1.15,
-    rock: '#cbd3d5',
-    foot: '#e3e7e7',
+    rock: '#b8cfdc',
+    foot: '#dde9ee',
     peaks: [{ x: 190, reach: 210, rise: 340 }, { x: 470, reach: 130, rise: 160 }, { x: 1040, reach: 120, rise: 52 }, { x: 1300, reach: 150, rise: 190 }],
   },
   {
     floor: 778,
     steep: 0.95,
-    rock: '#aab5b9',
-    foot: '#d9dedf',
-    lit: '#c7cfd1',
+    rock: '#8eb1c1',
+    foot: '#d3e3e7',
+    lit: '#b9d3c7',
     firs: { spacing: 16, low: 6, high: 13 },
     peaks: [{ x: 70, reach: 200, rise: 430 }, { x: 640, reach: 100, rise: 44 }, { x: 1560, reach: 210, rise: 500 }],
   },
   {
     floor: 826,
     steep: 0.8,
-    rock: '#8a979e',
-    foot: '#cbd2d4',
-    lit: '#adb8bc',
+    rock: '#6a96a6',
+    foot: '#c2d8db',
+    lit: '#a6c8b8',
     firs: { spacing: 13, low: 9, high: 24 },
     peaks: [{ x: -20, reach: 190, rise: 540 }, { x: 320, reach: 96, rise: 150 }, { x: 1266, reach: 84, rise: 210 }, { x: 1466, reach: 196, rise: 580 }],
   },
@@ -172,7 +172,7 @@ function cracks(seed: number, index: number, line: Skyline): string {
     }
   })
 
-  return `<path d="${lines}" fill="none" stroke="#66747b" stroke-opacity=".3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`
+  return `<path d="${lines}" fill="none" stroke="#3f626a" stroke-opacity=".3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`
 }
 
 /** Firs on the ledges, small against the rock, which is what shows how big the peaks are. */
@@ -206,7 +206,7 @@ export function range(seed: number, index: number): string {
   return (
     `<path d="M-40 ${shape.floor + 70}L${edge.join('L')}L${WIDTH + 40} ${shape.floor + 70}Z" fill="url(#rock${index})"${index < 2 ? ` filter="url(#far${index})"` : ''}/>` +
     (shape.lit === undefined ? '' : sunlit(seed, index, line) + cracks(seed, index, line)) +
-    (shape.firs === undefined ? '' : `<path d="${ledgeFirs(seed, index, line, shape.firs)}" fill="#6f7c83"/>`)
+    (shape.firs === undefined ? '' : `<path d="${ledgeFirs(seed, index, line, shape.firs)}" fill="#456870"/>`)
   )
 }
 
@@ -229,5 +229,5 @@ export function ledgeShape(): string {
     edge.push(`${x} ${Math.round(ledge(x))}`)
   }
 
-  return `<path d="M-20 1010L${edge.join('L')}L${WIDTH + 20} 1010Z" fill="#6b7980"/>`
+  return `<path d="M-20 1010L${edge.join('L')}L${WIDTH + 20} 1010Z" fill="#4a6d75"/>`
 }

@@ -7,12 +7,12 @@ import { chance } from './kit'
 type Row = { level: number; swell: number; grain: number; colour: string; pace: number }
 
 const ROWS: readonly Row[] = [
-  { level: 712, swell: 12, grain: 84, colour: '#e9eded', pace: 150 },
-  { level: 748, swell: 16, grain: 112, colour: '#ecefef', pace: 126 },
-  { level: 792, swell: 22, grain: 148, colour: '#eff2f1', pace: 104 },
-  { level: 842, swell: 28, grain: 190, colour: '#f2f4f4', pace: 88 },
-  { level: 898, swell: 34, grain: 240, colour: '#f5f7f6', pace: 74 },
-  { level: 952, swell: 40, grain: 300, colour: '#f8f9f9', pace: 62 },
+  { level: 712, swell: 12, grain: 84, colour: '#e9f0f1', pace: 150 },
+  { level: 748, swell: 16, grain: 112, colour: '#edf2f2', pace: 126 },
+  { level: 792, swell: 22, grain: 148, colour: '#f0f4f3', pace: 104 },
+  { level: 842, swell: 28, grain: 190, colour: '#f4f6f4', pace: 88 },
+  { level: 898, swell: 34, grain: 240, colour: '#f7f8f5', pace: 74 },
+  { level: 952, swell: 40, grain: 300, colour: '#fbfaf6', pace: 62 },
 ]
 
 export const CLOUD_ROWS = ROWS.length

@@ -94,12 +94,21 @@ The level-distance version (low hills, flat water, thin trees) was calm, but the
 
 So the two were joined: the steep peaks, mist ribbons, tiny firs and sea of cloud from the third try, in the gray ink of the fourth. The sun is now only a white disc in the haze, with no color and no rays. The two farthest ranges are slightly blurred; the app kept the picture moving with that blur when measured.
 
+## The sixth try: light color, not gray
+
+Two gray versions failed in opposite ways. Dark slate peaks with near-black firs were "too dark, the contrast is jarring". Lightened to mid grays, the whole thing looked "faded gray". Gray alone has no life in it.
+
+The old painters had an answer for this too: the "blue-green" manner (qinglu), where rock is washed with soft mineral blue and green instead of plain ink. So the peaks are dusty blue in shade and pale green where the sun touches, the far ranges are pale blue, the mist is warm white, and the sky runs from pale blue down to warm white. Still light, still low in contrast, no orange.
+
+Also fixed here: the mist rows were each shaded darker toward the bottom with a bright line on top, which read as folds in paper. They are now flat, soft-edged, and each nearer row only a touch whiter.
+
 ## Rules this theme follows
 
-1. Gray ink on cool paper. No strong color at all, the sun included.
+1. Light color: dusty blue, pale green, warm white. Not orange, and not gray alone.
 2. The middle is empty on purpose. The words sit there.
 3. Steep peaks are welcome, but only at the sides.
 4. Farther is paler and softer. Every peak dissolves into mist at its foot.
-5. Low contrast everywhere: the darkest thing is a soft mid gray, never black. Dark near peaks and black firs were tried and felt jarring.
+5. Low contrast everywhere: the darkest thing is a soft mid tone, never black.
 6. Never put a light source or its rays behind the words, and never let it be the brightest or most colored thing on screen.
-7. Slow motion only: rolling mist, a few birds.
+7. Mist has no shading lines. It is one pale field.
+8. Slow motion only: rolling mist, a few birds.
