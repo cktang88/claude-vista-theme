@@ -1,7 +1,7 @@
 {
   "name": "vista-theme",
-  "version": "2.0.0",
-  "description": "Vista theme: peaks standing out of a sea of clouds at sunrise, for the Claude desktop app. The tall peaks and the low sun keep to the sides and the middle is left as calm sky, so the chat reads cleanly over it.",
+  "version": "3.0.0",
+  "description": "Vista theme: a quiet ink-wash view in grays for the Claude desktop app. Low misty hills, a wide empty water, a pale sun and a few thin trees in one corner. The middle is left empty, so the chat reads cleanly over it.",
   "types": "./types/index.d.ts",
   "author": {
     "name": "cktang88"

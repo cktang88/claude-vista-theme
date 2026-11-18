@@ -62,13 +62,38 @@ What solves it:
 
 So the view was rebuilt around an empty middle.
 
+## The fourth try: serenity instead of awe
+
+The warm sea-of-clouds view worked with the chat, but it was orange and dramatic. The wish now is peace: gray, quiet, after old Chinese ink landscapes, in a modern rendering (not an antique look).
+
+Painters and works looked at:
+
+- **Ni Zan** (Yuan dynasty), "The Rongxi Studio" (1372) and "Six Gentlemen". His layout is "one river, two banks": a near bank with a few thin trees, a wide empty water, low far hills. Light ink, a balance of solid and void, no grand mountain forms. [National Palace Museum on The Rongxi Studio](https://theme.npm.edu.tw/exh109/Labels/digital/en.html), [Ni Zan](https://www.chinaonlinemuseum.com/painting-ni-zan.php)
+- **Mi Youren** (Song dynasty), "Cloudy Mountains": soft rounded hills that rise out of mist with no hard outline. [The Met: Landscape painting in Chinese art](https://www.metmuseum.org/essays/landscape-painting-in-chinese-art)
+- **Guo Xi** (Song dynasty), "Old Trees, Level Distance", and his three distances: high (looking up, grand), deep (looking in), level (looking across, calm). [Brush techniques](https://oriental-art.github.io/oriental-art/articles/painting/02_brush_techniques.html), [Shan shui](https://oriental-art.github.io/oriental-art/articles/painting/01_shan_shui.html)
+- Later paintings on the "Eight Views of Xiaoxiang" themes (evening bell from a mist-covered temple, geese coming down on a sandbank): wide water, mist, a line of geese.
+- The Met essay says that in these works painting stopped being a description of the visible world and became "the inner landscape of the artist's heart and mind".
+
+Techniques, and how each is done here:
+
+| Old technique | What it does | Here |
+| --- | --- | --- |
+| Leaving the paper white (liubai) | rest for the eye | most of the picture is plain paper |
+| Level distance | calm, not grand | low hills across a flat water line |
+| Five tones of ink, from dark to clear | depth | four rows of hills, each paler than the one in front |
+| Wet wash that fades into the paper | mist | every row fades to nothing at its foot, with soft edges |
+| One river, two banks | stillness | far shore, empty water, near bank in one corner |
+| Sparse trees with leaf dabs | the one dark accent | five thin trees with short flat dabs for leaves |
+| Flat dots for far growth | scale | left out: at this size they read as noise |
+
+Left out on purpose, to keep it modern: seals, inscriptions, brush-texture strokes, yellowed paper, boats and pavilions.
+
 ## Rules this theme follows
 
-1. The middle is empty on purpose: calm sky above, pale cloud below. The words sit there.
-2. The subject keeps to the sides: the tallest peak and the sun at the right, a smaller group at the left.
-3. Never put the light source or its rays behind the words. It reads as glare.
-4. One warm ramp: cream cloud, peach far peaks, orange and deep red near rock, dark plum ledge.
-5. Far things are pale, small and simple. Near things are tall, with a sunlit side, a shaded side and cracks.
-6. Tiny firs on huge rock, and tiny birds in a big sky, give the scale.
-7. Every peak fades into cloud at its foot, and mist lies across its waist.
-8. Slow motion only: nothing that pulls the eye away from reading.
+1. Gray ink on cool paper. One small muted warm note (the sun). No orange.
+2. The middle is empty on purpose. The words sit there.
+3. Long flat lines and low rounded hills. Nothing tall or sharp.
+4. Farther is paler and softer. Every row dissolves at its foot.
+5. One dark accent, in a corner.
+6. Never put a light source or its rays behind the words.
+7. Almost still: slow mist, faint ripples, one slow line of geese.

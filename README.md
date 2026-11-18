@@ -1,26 +1,29 @@
 # Vista theme for the Claude desktop app
 
-You stand on a high ledge at sunrise and look out over a sea of clouds. Peaks stand out of it like islands: pale and small far away, tall and warm near you, with tiny firs on their ledges. A low sun sits beside the tallest one.
+A quiet view in grays, after the calmest old Chinese landscape paintings, drawn in a clean modern way. Low hills fade into mist across a wide, still water. A pale sun hangs at the right, and a few thin trees stand on a near bank in one corner. Most of the picture is left empty.
 
-![peaks standing out of a sea of clouds at sunrise, the tall ones at both sides, a low sun at the right, and calm empty sky in the middle](docs/preview.gif)
+![a quiet gray view: low misty hills fading into a wide empty water, a pale sun, and a few thin trees on a near bank in the bottom right corner](docs/preview.gif)
 
 ## Made to sit behind a conversation
 
-The app lays the chat down the middle of the window, and a theme cannot move it. A full picture there ends up hidden behind your words. So this view follows the "one-corner" rule of old landscape painting: the subject keeps to the sides, and the middle is left as empty sky and cloud on purpose. The words rest on the calm part, and only a faint veil is needed. The sun and its glow stay at the side, never behind the text.
+The app lays the chat down the middle of the window, and a theme cannot move it. So the middle of this picture is empty on purpose: pale hills at the top, open water below. The words rest there, and only a faint veil is needed. The one dark thing, the trees, keeps to the corner.
 
-## What moves
+## Where the calm comes from
 
-- The sea of clouds rolls slowly, each row at its own pace.
-- Ribbons of mist drift across the waists of the peaks.
-- Thin streaks of high cloud cross the sky.
-- A flock of birds crosses, a smaller flock passes far off, and an eagle glides in a wide slow circle.
-- The dark firs on the ledge sway a little.
+These are the old painters' means, kept; the antique look (seals, brush texture, yellowed paper) is left out.
+
+- **Emptiness.** Most of the page is unpainted. The eye rests in it.
+- **Level distance.** You look across flat water to low hills, not up at a towering peak. Long flat lines are calm.
+- **Thin ink.** Each farther row of hills is paler, and every row fades to nothing at its foot, as mist takes it.
+- **Soft edges.** Nothing far away has a hard line.
+- **One dark note.** A few thin trees in one corner, so the rest reads as light and far.
+- **Stillness.** The mist drifts, the water barely stirs, and one line of geese crosses very slowly.
 
 ## A new view every session
 
-Each session draws its own view from its own seed (taken from when the session started): the outline of every peak, its side summits and cracks, where the firs stand, how the clouds lie. The view is drawn once and then left alone, so nothing flickers while Claude works.
+Each session draws its own view from its own seed (taken from when the session started): the shape of every row of hills, how the trees stand, where the mist lies. The view is drawn once and then left alone, so nothing flickers while Claude works.
 
-The colors are a light theme with dark text.
+The colors are a light theme in cool grays with dark text.
 
 ## Install
 

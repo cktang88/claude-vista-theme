@@ -1,51 +1,93 @@
-// The near firs: tall and dark, on the ledge at the two bottom corners, with a bare snag or two among them.
-// They frame the view and stay out of the middle.
+// A few thin trees on the near bank, in the spare manner of Ni Zan: slender trunks, a handful of branches, and
+// leaves as short flat dabs. They are the one dark thing in the picture, and they keep to the corner.
 
-import { WIDTH, between, chance } from './kit'
-import { fir } from './fir'
-import { ledge } from './land'
+import { INK, between, chance } from './kit'
+import { bankTop } from './land'
 
-/** A dead tree: a bare pole with a few short broken branches. */
-function snag(seed: number, id: number, x: number, foot: number, height: number): string {
-  const top = foot - height
-  let shape = `M${x - 4} ${foot}L${x - 1} ${top}L${x + 1} ${top}L${x + 4} ${foot}Z`
+type Tree = { wood: string; twigs: string; leaves: string; foot: { x: number; y: number } }
 
-  for (let branch = 0; branch < 5; branch += 1) {
-    const y = Math.round(top + height * between(0.12, 0.7, chance(seed, id * 17 + branch, 54)))
-    const side = branch % 2 === 0 ? 1 : -1
-    const reach = Math.round(side * height * between(0.05, 0.13, chance(seed, id * 17 + branch, 55)))
+function thinTree(seed: number, id: number, x: number, foot: number, height: number): Tree {
+  const lean = between(-0.26, 0.14, chance(seed, id, 61))
+  const sway = chance(seed, id, 62) * 6
+  const at = (share: number) => ({
+    x: x + lean * height * share ** 1.4 + Math.sin(share * 4 + sway) * height * 0.022,
+    y: foot - height * share,
+  })
+  const left: string[] = []
+  const right: string[] = []
 
-    shape += `M${x} ${y + 5}L${x + reach} ${y - 8}L${x + reach} ${y - 5}L${x} ${y + 10}Z`
+  for (let step = 0; step <= 10; step += 1) {
+    const point = at(step / 10)
+    const half = (height * 0.016 + 1.3) * (1 - 0.78 * (step / 10))
+
+    left.push(`${Math.round(point.x - half)} ${Math.round(point.y)}`)
+    right.unshift(`${Math.round(point.x + half)} ${Math.round(point.y)}`)
   }
 
-  return shape
-}
+  let twigs = ''
+  let leaves = ''
+  // A clump of leaves: short flat dabs packed into a low dome, thicker in the middle.
+  const dab = (cx: number, cy: number, spread: number, count: number, salt: number) => {
+    for (let leaf = 0; leaf < count; leaf += 1) {
+      const reach = spread * Math.sqrt(chance(seed, id * 97 + salt * 13 + leaf, 63))
+      const turn = chance(seed, id * 97 + salt * 13 + leaf, 64) * Math.PI * 2
+      const length = Math.round(between(4, 8, chance(seed, id * 97 + salt * 13 + leaf, 65)))
 
-/** The near firs sway a little, each at its own pace. */
-export function pines(seed: number): string {
-  const trees: { x: number; height: number; index: number }[] = []
-
-  for (let index = 0; index < 26; index += 1) {
-    const x = Math.round(-14 + index * 64 + 46 * chance(seed, index, 61))
-    const side = Math.abs(x - WIDTH / 2) / (WIDTH / 2)
-
-    if (side > 0.72) {
-      trees.push({ x, height: Math.round((70 + 520 * ((side - 0.72) / 0.28) ** 1.2) * between(0.6, 1.15, chance(seed, index, 62))), index })
+      leaves += `M${Math.round(cx + reach * Math.cos(turn) - length / 2)} ${Math.round(cy - Math.abs(reach * Math.sin(turn)) * 0.55)}h${length}`
     }
   }
+  const branches = 4 + Math.floor(3 * chance(seed, id, 66))
 
-  // The shorter trees are drawn first, so the tall ones stand in front.
-  return trees
-    .sort((one, other) => one.height - other.height)
-    .map(({ x, height, index }) => {
-      const foot = Math.round(ledge(x)) + 8
-      const isSnag = height > 220 && chance(seed, index, 63) < 0.14
-      const shape = isSnag
-        ? snag(seed, index, x, foot, Math.round(height * 0.7))
-        : fir(seed, 9000 + index, x, foot, height, Math.min(32, Math.max(8, Math.round(height / 15))), between(0.85, 1.2, chance(seed, index, 64)))
-      const pace = between(6, 10, chance(seed, index, 52)).toFixed(1)
+  for (let branch = 0; branch < branches; branch += 1) {
+    const share = between(0.5, 0.97, (branch + chance(seed, id * 7 + branch, 67)) / branches)
+    const from = at(share)
+    const side = branch % 2 === 0 ? 1 : -1
+    const length = height * between(0.12, 0.24, chance(seed, id * 7 + branch, 68)) * (1.15 - share * 0.5)
+    const rise = between(0.4, 0.9, chance(seed, id * 7 + branch, 69))
+    const end = { x: from.x + side * length * Math.cos(rise), y: from.y - length * Math.sin(rise) }
 
-      return `<path class="sway" style="transform-origin:${x}px ${foot}px;animation-duration:${pace}s;animation-delay:-${between(0, 9, chance(seed, index, 53)).toFixed(1)}s" d="${shape}"/>`
-    })
-    .join('')
+    twigs += `M${Math.round(from.x)} ${Math.round(from.y)}Q${Math.round(from.x + side * length * 0.5)} ${Math.round(from.y - length * 0.1)} ${Math.round(end.x)} ${Math.round(end.y)}`
+    dab(end.x, end.y, length * 0.62, 12 + Math.floor(7 * chance(seed, id * 7 + branch, 70)), branch)
+  }
+
+  const crown = at(1)
+
+  dab(crown.x, crown.y, height * 0.1, 16, 9)
+
+  return { wood: `M${left.join('L')}L${right.join('L')}Z`, twigs, leaves, foot: { x, y: foot } }
+}
+
+/** The trees on the near bank. They sway a very little, each at its own slow pace. */
+export function nearTrees(seed: number): string {
+  let all = ''
+
+  for (let index = 0; index < 5; index += 1) {
+    const x = Math.round(1372 + index * 50 + between(-14, 14, chance(seed, index, 71)))
+    const tree = thinTree(seed, index, x, Math.round(bankTop(x)) + 6, Math.round(between(210, 390, chance(seed, index, 72))))
+    const pace = between(9, 14, chance(seed, index, 52)).toFixed(1)
+
+    all +=
+      `<g class="sway" style="transform-origin:${tree.foot.x}px ${tree.foot.y}px;animation-duration:${pace}s;animation-delay:-${between(0, 9, chance(seed, index, 53)).toFixed(1)}s">` +
+      `<path d="${tree.wood}" fill="${INK}"/>` +
+      `<path d="${tree.twigs}" fill="none" stroke="${INK}" stroke-width="1.6" stroke-linecap="round"/>` +
+      `<path d="${tree.leaves}" fill="none" stroke="${INK}" stroke-opacity=".8" stroke-width="3.2" stroke-linecap="round"/></g>`
+  }
+
+  return all
+}
+
+/** Reeds on the small far-left bank. */
+export function reeds(seed: number): string {
+  let blades = ''
+
+  for (let index = 0; index < 26; index += 1) {
+    const x = Math.round(between(0, 250, chance(seed, index, 73)))
+    const y = Math.round(950 + x * 0.17)
+    const tall = Math.round(between(26, 70, chance(seed, index, 74)))
+    const lean = Math.round(between(-4, 16, chance(seed, index, 75)))
+
+    blades += `M${x} ${y}q${Math.round(lean / 3)} ${-Math.round(tall / 2)} ${lean} ${-tall}`
+  }
+
+  return `<path d="${blades}" fill="none" stroke="${INK}" stroke-opacity=".7" stroke-width="1.4" stroke-linecap="round"/>`
 }

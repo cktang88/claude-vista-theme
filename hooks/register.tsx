@@ -1,6 +1,6 @@
-// Vista theme: peaks standing out of a sea of clouds at sunrise. The tall peaks and the sun keep to the sides and the middle is
-// left as empty sky, because the app lays the chat there, and a matching
-// light color theme. The view depends only on the session's seed, so it is drawn once and never flickers.
+// Vista theme: a quiet ink-wash view in grays. Low misty hills, a wide empty water, and a few thin trees on a
+// near bank in one corner, with a matching light color theme. The middle is left empty, because the app lays the
+// chat there. The view depends only on the session's seed, so it is drawn once and never flickers.
 
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
 
@@ -14,16 +14,16 @@ const SEED = { plugin: 'vista-theme', key: 'seed' } as const
 const { theme, problems } = makeColors({
   label: 'Vista',
   only: 'light',
-  roles: { accent: '#a8432c', danger: '#b3392f', success: '#2f7a55', warning: '#a86f14', pro: '#6d4f94' },
+  roles: { accent: '#3d5a6c', danger: '#b3392f', success: '#2f7a55', warning: '#a86f14', pro: '#6d4f94' },
   light: {
     gray: {
       anchors: {
-        'surface-0': '#f4e3cb',
-        'surface-1': '#f9ecd9',
-        'surface-2': '#fff8ec',
-        'text-primary': '#2a1719',
-        'text-secondary': '#523a37',
-        'text-muted': '#6b524c',
+        'surface-0': '#e4e8e8',
+        'surface-1': '#eef0ef',
+        'surface-2': '#f8f9f8',
+        'text-primary': '#1c2123',
+        'text-secondary': '#3c464a',
+        'text-muted': '#556065',
       },
     },
   },
@@ -32,7 +32,7 @@ const { theme, problems } = makeColors({
 // The scene's name goes under `id` as well as `scene`, as the theme-examples plugin sets its own.
 const LOOK = {
   colors: theme,
-  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 1, tint: '#fdebd2', opacity: 0.35 } },
+  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 1, tint: '#eef0ef', opacity: 0.3 } },
 } as unknown as ThemeSetArgs
 
 /**
@@ -110,6 +110,6 @@ export const register: Register = on => {
 
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg isInteractive alt="Peaks standing out of a sea of clouds at sunrise, tall ones at both sides with small firs on their ledges, a low sun at the right, and empty sky in the middle" source={backdropSource()} />
+    return <Svg isInteractive alt="A quiet ink-wash view in grays: low misty hills fading into a wide empty water, a pale sun, and a few thin trees on a near bank in the bottom right corner" source={backdropSource()} />
   })
 }
