@@ -1,0 +1,15 @@
+{
+  "name": "claude-vista-theme",
+  "owner": {
+    "name": "cktang88"
+  },
+  "metadata": {
+    "description": "A far-view nature theme for the Claude desktop app."
+  },
+  "plugins": [
+    {
+      "name": "vista-theme",
+      "source": "./"
+    }
+  ]
+}
