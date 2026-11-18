@@ -1,7 +1,7 @@
 // The whole view, drawn back to front. It depends only on the session's seed, so it is never drawn again
 // mid-session and nothing flickers.
 
-import { HEIGHT, SUN, WIDTH } from './scene/kit'
+import { HEIGHT, VALLEY, WIDTH } from './scene/kit'
 import { NEAREST, RIDGES, fog, ridge, ridgeFills, river } from './scene/land'
 import { LIFE_STYLE, eagle, farFlock, motes, nearFlock } from './scene/life'
 import { SKY_STYLE, clouds, haze, rays, sky, skyFills } from './scene/sky'
@@ -20,25 +20,24 @@ function draw(seed: number, thin: number): string {
     `<style>${SKY_STYLE}${LIFE_STYLE}${STILL}</style>` +
     `<defs>${skyFills()}${ridgeFills()}</defs>` +
     sky() +
-    rays(seed, 195, 345, 6, 0.45) +
     clouds(seed) +
     land(0) +
     land(1) +
     land(2) +
-    haze(620, 1) +
+    haze(380, 0.9) +
     farFlock(seed) +
     land(3) +
-    fog(SUN.x, 650, 580, 52, 52, 0.8) +
+    fog(VALLEY, 650, 580, 52, 52, 0.8) +
     land(4) +
-    haze(480, 0.9) +
+    haze(280, 0.75) +
     land(5) +
-    fog(SUN.x, 712, 620, 64, 44, 0.95) +
+    fog(VALLEY, 712, 620, 64, 44, 0.95) +
     land(6) +
     river(seed) +
-    fog(SUN.x, 790, 640, 74, 58, 1) +
-    rays(seed, 20, 160, 9, 0.8) +
+    fog(VALLEY, 790, 640, 74, 58, 1) +
+    rays(seed, 100, 205, 6, 0.6) +
     land(7) +
-    fog(SUN.x, 900, 560, 60, 60, 0.5) +
+    fog(VALLEY, 900, 560, 60, 60, 0.5) +
     nearFlock(seed) +
     eagle() +
     land(NEAREST) +

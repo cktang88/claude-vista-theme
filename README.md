@@ -1,12 +1,12 @@
 # Vista theme for the Claude desktop app
 
-A far view for the Code tab, at golden hour. You stand among tall firs and look out over layer after layer of forested ridges that fade into warm haze, all the way to distant peaks. A low sun sits in a gap between them, fog glows in the valley, and a river carries the light toward you.
+A far view for the Code tab, at golden hour. You stand among tall firs and look out over layer after layer of forested ridges that fade into warm haze, all the way to distant peaks. A low sun sits in a gap between them at the right, fog lies in the valley, and a river winds toward you.
 
 ![a wide golden-hour view over layers of forested ridges to distant peaks, with a low sun, a river, tall firs, thin clouds and birds](docs/preview.gif)
 
 ## What moves
 
-- Long rays of light fan out from the sun and slowly grow and fade.
+- Short rays of light fan out from the sun through the firs and slowly grow and fade.
 - Thin clouds, dusky on top and gold underneath, cross very slowly.
 - A flock of birds crosses the sky, and a smaller flock passes low over the peaks the other way.
 - An eagle glides in a wide slow circle.
@@ -16,7 +16,7 @@ A far view for the Code tab, at golden hour. You stand among tall firs and look 
 
 Each session draws its own view from its own seed (taken from when the session started): the shape of every ridge and peak, where the forest stands and where it opens, how the clouds lie. The view is drawn once and then left alone, so nothing flickers while Claude works.
 
-The colors are a light theme with dark text. The sun and the valley fog sit behind the middle of the window, where the app lays the chat, so the words rest on the brightest, calmest part of the view and only a thin veil is needed. The tall firs and the deep colors keep to the sides, where nothing covers them.
+The colors are a light theme with dark text. The middle of the window, where the app lays the chat, holds only calm sky and pale valley fog, so the words rest on a quiet part of the view and only a thin veil is needed. The sun stands low at the right, half behind the tall firs, so it never shines through your text. The firs and the deep colors keep to the sides, where nothing covers them.
 
 ## Install
 

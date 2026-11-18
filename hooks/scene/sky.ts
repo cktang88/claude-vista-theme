@@ -16,9 +16,9 @@ export function skyFills(): string {
     '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9726b"/><stop offset=".3" stop-color="#ea9560"/><stop offset=".62" stop-color="#f9c173"/><stop offset="1" stop-color="#ffe9b3"/></linearGradient>' +
     '<radialGradient id="glow"><stop offset="0" stop-color="#ffe9a8"/><stop offset=".16" stop-color="#ffe19a" stop-opacity=".85"/><stop offset=".5" stop-color="#ffcf80" stop-opacity=".32"/><stop offset="1" stop-color="#ffcf80" stop-opacity="0"/></radialGradient>' +
     '<radialGradient id="haze"><stop offset="0" stop-color="#ffedb8" stop-opacity=".6"/><stop offset=".45" stop-color="#ffd690" stop-opacity=".4"/><stop offset="1" stop-color="#ffd690" stop-opacity="0"/></radialGradient>' +
-    `<radialGradient id="beam" gradientUnits="userSpaceOnUse" cx="${SUN.x}" cy="${SUN.y}" r="1100"><stop offset=".04" stop-color="#fff2c4" stop-opacity=".6"/><stop offset="1" stop-color="#fff2c4" stop-opacity="0"/></radialGradient>` +
+    `<radialGradient id="beam" gradientUnits="userSpaceOnUse" cx="${SUN.x}" cy="${SUN.y}" r="560"><stop offset=".06" stop-color="#fff2c4" stop-opacity=".55"/><stop offset="1" stop-color="#fff2c4" stop-opacity="0"/></radialGradient>` +
     '<radialGradient id="mist"><stop offset="0" stop-color="#fff0d2" stop-opacity=".95"/><stop offset=".55" stop-color="#ffe8c0" stop-opacity=".6"/><stop offset="1" stop-color="#ffe8c0" stop-opacity="0"/></radialGradient>' +
-    '<linearGradient id="river" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3a66b"/><stop offset=".6" stop-color="#ffdb98"/><stop offset="1" stop-color="#fffbe4"/></linearGradient>' +
+    '<linearGradient id="river" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3a66b"/><stop offset=".6" stop-color="#fbcf92"/><stop offset="1" stop-color="#ffe6b8"/></linearGradient>' +
     '<linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9616f"/><stop offset=".55" stop-color="#f08f62"/><stop offset="1" stop-color="#ffd08c"/></linearGradient>'
   )
 }
@@ -26,9 +26,9 @@ export function skyFills(): string {
 export function sky(): string {
   return (
     `<rect x="-20" y="-20" width="${WIDTH + 40}" height="640" fill="url(#sky)"/>` +
-    `<circle cx="${SUN.x}" cy="${SUN.y}" r="780" fill="url(#glow)"/>` +
+    `<circle cx="${SUN.x}" cy="${SUN.y}" r="430" fill="url(#glow)"/>` +
     `<circle class="halo" cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size + 26}" fill="none" stroke="#fff6d2" stroke-width="12"/>` +
-    `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size}" fill="#fffdf2"/>`
+    `<circle cx="${SUN.x}" cy="${SUN.y}" r="${SUN.size}" fill="#fff4d0"/>`
   )
 }
 
@@ -44,7 +44,7 @@ export function rays(seed: number, from: number, to: number, count: number, stre
   for (let index = 0; index < count; index += 1) {
     const angle = ((between(from, to, (index + 0.5 * chance(seed, index, 11 + from)) / count)) * Math.PI) / 180
     const half = (between(0.7, 2.1, chance(seed, index, 12 + from)) * Math.PI) / 180
-    const end = (turn: number) => `${Math.round(SUN.x + 1300 * Math.cos(turn))} ${Math.round(SUN.y + 1300 * Math.sin(turn))}`
+    const end = (turn: number) => `${Math.round(SUN.x + 600 * Math.cos(turn))} ${Math.round(SUN.y + 600 * Math.sin(turn))}`
     const pace = between(7, 14, chance(seed, index, 13 + from)).toFixed(1)
 
     beams += `<path class="ray" style="animation-duration:${pace}s;animation-delay:-${(index * 2.3).toFixed(1)}s" d="M${SUN.x} ${SUN.y}L${end(angle - half)}L${end(angle + half)}Z"/>`
