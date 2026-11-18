@@ -1,7 +1,7 @@
 {
   "name": "vista-theme",
-  "version": "1.0.0",
-  "description": "Vista theme: a wide golden-hour view for the Claude desktop app. Layers of forested ridges fade into warm haze toward distant peaks, with a low sun, a river, tall firs, thin clouds, birds and an eagle.",
+  "version": "2.0.0",
+  "description": "Vista theme: peaks standing out of a sea of clouds at sunrise, for the Claude desktop app. The tall peaks and the low sun keep to the sides and the middle is left as calm sky, so the chat reads cleanly over it.",
   "types": "./types/index.d.ts",
   "author": {
     "name": "cktang88"

@@ -1,8 +1,8 @@
-// What moves in the air: two flocks of birds, a soaring eagle, and specks of light drifting up near the trees.
+// What moves in the air: two flocks of birds and a soaring eagle. The near firs sway.
 
-import { WIDTH, between, chance } from './kit'
+import { between, chance } from './kit'
 
-const SOAR = { x: 430, y: 300, wide: 120, tall: 46 } as const
+const SOAR = { x: 420, y: 330, wide: 110, tall: 42 } as const
 
 function soarStops(): string {
   let stops = ''
@@ -20,21 +20,15 @@ function soarStops(): string {
 
 export const LIFE_STYLE =
   '.cross{animation:cross 95s linear infinite}' +
-  '@keyframes cross{from{transform:translate(-160px,330px)}to{transform:translate(1760px,240px)}}' +
+  '@keyframes cross{from{transform:translate(-160px,300px)}to{transform:translate(1760px,210px)}}' +
   '.back{animation:back 150s linear infinite}' +
-  '@keyframes back{from{transform:translate(1700px,455px)}to{transform:translate(-120px,420px)}}' +
+  '@keyframes back{from{transform:translate(1700px,470px)}to{transform:translate(-120px,430px)}}' +
   '.flap{animation:flap ease-in-out infinite alternate}' +
   '@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(-.35)}}' +
   '.soar{animation:soar 40s linear infinite}' +
   `@keyframes soar{${soarStops()}}` +
-  '.mote{animation:mote linear infinite}' +
-  '@keyframes mote{0%{transform:translate(0,0);opacity:0}15%{opacity:.9}80%{opacity:.7}100%{transform:translate(40px,-180px);opacity:0}}' +
   '.sway{animation:sway ease-in-out infinite alternate}' +
-  '@keyframes sway{from{transform:rotate(-.5deg)}to{transform:rotate(.6deg)}}' +
-  '.mist{animation:mist ease-in-out infinite alternate}' +
-  '@keyframes mist{from{transform:translateX(-70px)}to{transform:translateX(70px)}}' +
-  '.glint{animation:glint ease-in-out infinite alternate}' +
-  '@keyframes glint{from{opacity:.1}to{opacity:1}}'
+  '@keyframes sway{from{transform:rotate(-.5deg)}to{transform:rotate(.6deg)}}'
 
 /** A flock in a loose V. Each bird beats its wings at its own pace. */
 function flock(seed: number, salt: number, count: number, size: number): string {
@@ -65,19 +59,4 @@ export function farFlock(seed: number): string {
 /** An eagle gliding in a wide slow circle, seen from far below. */
 export function eagle(): string {
   return '<g class="soar"><path d="M0 -3C-9 -6 -27 -8 -42 -2C-29 -2 -14 2 -4 4L-3 11L0 7L3 11L4 4C14 2 29 -2 42 -2C27 -8 9 -6 0 -3Z" fill="#4a1a2c" transform="scale(.62)"/></g>'
-}
-
-/** Specks of light that rise and fade, as pollen does in a sunbeam. */
-export function motes(seed: number): string {
-  let specks = ''
-
-  for (let index = 0; index < 22; index += 1) {
-    const x = Math.round(WIDTH * chance(seed, index, 91))
-    const y = Math.round(between(560, 930, chance(seed, index, 92)))
-    const pace = between(9, 18, chance(seed, index, 93))
-
-    specks += `<circle class="mote" style="animation-duration:${pace.toFixed(1)}s;animation-delay:-${(pace * chance(seed, index, 94)).toFixed(1)}s" cx="${x}" cy="${y}" r="${between(1.2, 2.6, chance(seed, index, 95)).toFixed(1)}"/>`
-  }
-
-  return `<g fill="#ffe6a8">${specks}</g>`
 }

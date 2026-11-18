@@ -1,4 +1,5 @@
-// Vista theme: a far view at golden hour over layers of forested ridges to distant peaks, with a low sun, a river and tall firs, and a matching
+// Vista theme: peaks standing out of a sea of clouds at sunrise. The tall peaks and the sun keep to the sides and the middle is
+// left as empty sky, because the app lays the chat there, and a matching
 // light color theme. The view depends only on the session's seed, so it is drawn once and never flickers.
 
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
@@ -17,8 +18,8 @@ const { theme, problems } = makeColors({
   light: {
     gray: {
       anchors: {
-        'surface-0': '#f3e4d0',
-        'surface-1': '#f8ecdb',
+        'surface-0': '#f4e3cb',
+        'surface-1': '#f9ecd9',
         'surface-2': '#fff8ec',
         'text-primary': '#2a1719',
         'text-secondary': '#523a37',
@@ -31,7 +32,7 @@ const { theme, problems } = makeColors({
 // The scene's name goes under `id` as well as `scene`, as the theme-examples plugin sets its own.
 const LOOK = {
   colors: theme,
-  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 2, tint: '#fff6e6', opacity: 0.55 } },
+  backdrop: { scene: SCENE, id: SCENE, glass: { blur: 1, tint: '#fdebd2', opacity: 0.35 } },
 } as unknown as ThemeSetArgs
 
 /**
@@ -109,6 +110,6 @@ export const register: Register = on => {
 
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg isInteractive alt="A wide golden-hour view over layers of forested ridges to distant peaks, with a low sun in a gap between them, a river, tall firs at both sides, thin clouds and birds" source={backdropSource()} />
+    return <Svg isInteractive alt="Peaks standing out of a sea of clouds at sunrise, tall ones at both sides with small firs on their ledges, a low sun at the right, and empty sky in the middle" source={backdropSource()} />
   })
 }

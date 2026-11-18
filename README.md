@@ -1,22 +1,26 @@
 # Vista theme for the Claude desktop app
 
-A far view for the Code tab, at golden hour. You stand among tall firs and look out over layer after layer of forested ridges that fade into warm haze, all the way to distant peaks. A low sun sits in a gap between them at the right, fog lies in the valley, and a river winds toward you.
+You stand on a high ledge at sunrise and look out over a sea of clouds. Peaks stand out of it like islands: pale and small far away, tall and warm near you, with tiny firs on their ledges. A low sun sits beside the tallest one.
 
-![a wide golden-hour view over layers of forested ridges to distant peaks, with a low sun, a river, tall firs, thin clouds and birds](docs/preview.gif)
+![peaks standing out of a sea of clouds at sunrise, the tall ones at both sides, a low sun at the right, and calm empty sky in the middle](docs/preview.gif)
+
+## Made to sit behind a conversation
+
+The app lays the chat down the middle of the window, and a theme cannot move it. A full picture there ends up hidden behind your words. So this view follows the "one-corner" rule of old landscape painting: the subject keeps to the sides, and the middle is left as empty sky and cloud on purpose. The words rest on the calm part, and only a faint veil is needed. The sun and its glow stay at the side, never behind the text.
 
 ## What moves
 
-- Short rays of light fan out from the sun through the firs and slowly grow and fade.
-- Thin clouds, dusky on top and gold underneath, cross very slowly.
-- A flock of birds crosses the sky, and a smaller flock passes low over the peaks the other way.
-- An eagle glides in a wide slow circle.
-- Fog drifts between the ridges, sunlight glitters on the river, the near firs sway, and specks of light rise near the trees.
+- The sea of clouds rolls slowly, each row at its own pace.
+- Ribbons of mist drift across the waists of the peaks.
+- Thin streaks of high cloud cross the sky.
+- A flock of birds crosses, a smaller flock passes far off, and an eagle glides in a wide slow circle.
+- The dark firs on the ledge sway a little.
 
 ## A new view every session
 
-Each session draws its own view from its own seed (taken from when the session started): the shape of every ridge and peak, where the forest stands and where it opens, how the clouds lie. The view is drawn once and then left alone, so nothing flickers while Claude works.
+Each session draws its own view from its own seed (taken from when the session started): the outline of every peak, its side summits and cracks, where the firs stand, how the clouds lie. The view is drawn once and then left alone, so nothing flickers while Claude works.
 
-The colors are a light theme with dark text. The middle of the window, where the app lays the chat, holds only calm sky and pale valley fog, so the words rest on a quiet part of the view and only a thin veil is needed. The sun stands low at the right, half behind the tall firs, so it never shines through your text. The firs and the deep colors keep to the sides, where nothing covers them.
+The colors are a light theme with dark text.
 
 ## Install
 

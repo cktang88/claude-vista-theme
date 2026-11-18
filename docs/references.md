@@ -50,13 +50,25 @@ Real photographs (Grand Teton from the Snake River, Yosemite's Tunnel View, laye
 - Clouds are lit from below in orange and pink while their tops stay dusky.
 - Peaks are tall and sharp against the sky, far higher than anything near.
 
+## The third try: a picture that shares the page with words
+
+Two full landscapes failed for the same reason. The app lays the chat over the middle of the window, so the middle of the picture, where a landscape keeps its subject, was hidden. Putting the sun there to brighten it felt like glare in the eyes.
+
+What solves it:
+
+- Chinese landscape painters left large parts of the paper unpainted (liubai, "leaving white"). The empty part is mist, sky or water, and it lets the picture continue in the mind. [The art of liubai](https://www.bulgarihotels.com/en_US/shanghai/whats-on/article/shanghai/in-the-city/The-Void-That-Shapes-the-World--Discovering-the-Art-of-Liubai), [Emptiness as art](https://meer.com/en/107713-emptiness-as-art-the-wisdom-of-eastern-aesthetics)
+- Song dynasty painters used a "one-corner" or "half-side" layout: the subject sits in one corner and the rest is left open. [Framing the invisible (sponsored piece on Song painting)](https://sponsorcontent.cnn.com/edition/2023/song-painted/framing-invisible)
+- Photos of a sea of clouds at sunrise are that same layout in real life: peaks as islands at the edges, and a soft pale middle. Looked at image results for "sea of clouds sunrise" and for misty mountain ink paintings.
+
+So the view was rebuilt around an empty middle.
+
 ## Rules this theme follows
 
-1. One warm ramp: pale gold sky to dark plum foreground, eight steps.
-2. Many layers (vastness), each fading to a lighter foot (fog).
-3. Forest as ragged silhouettes on the ridge edge, smaller and simpler with distance.
-4. A low sun in a notch between the far peaks, with a bloom that washes the nearby layers toward gold, and a river that carries its light into the valley.
-5. Tall dark firs at both sides, so you look out from shelter.
-6. Tiny birds against huge mountains, to give the scale.
-7. Slow motion only: nothing that pulls the eye away from reading.
-8. The app lays the chat over the middle of the window and a theme cannot move it. So the middle holds only calm sky and pale fog, and the sides hold the sun, the dark trees and the detail. A sun behind the text was tried and felt like glare in the eyes: never put the light source or its rays behind the words.
+1. The middle is empty on purpose: calm sky above, pale cloud below. The words sit there.
+2. The subject keeps to the sides: the tallest peak and the sun at the right, a smaller group at the left.
+3. Never put the light source or its rays behind the words. It reads as glare.
+4. One warm ramp: cream cloud, peach far peaks, orange and deep red near rock, dark plum ledge.
+5. Far things are pale, small and simple. Near things are tall, with a sunlit side, a shaded side and cracks.
+6. Tiny firs on huge rock, and tiny birds in a big sky, give the scale.
+7. Every peak fades into cloud at its foot, and mist lies across its waist.
+8. Slow motion only: nothing that pulls the eye away from reading.

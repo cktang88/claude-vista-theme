@@ -1,136 +1,230 @@
-// The land: eight layers on one warm ramp, from pale far peaks to the dark near slope. Each layer fades to a
-// lighter foot, as fog does in a valley, and the nearer ones carry forest on their edge. A river runs in the valley.
+// The land: peaks that stand out of a sea of clouds like islands. The far ones are pale and small; the near ones
+// are tall, warm on the side that faces the sun and deep red in shade, with firs on their ledges. Every peak
+// fades into cloud at its foot. The tall peaks keep to the sides of the picture.
 
 import { SUN, WIDTH, between, chance } from './kit'
 import { fir } from './fir'
 
-type Forest = { spacing: number; low: number; high: number; tiers: number }
+type Peak = { x: number; reach: number; rise: number }
 
-export type Ridge = {
-  /** Where the top edge sits in the middle of the picture, and how far it rises toward both sides. */
-  base: number
-  lift: number
-  /** How much the edge rolls, and how much it juts into peaks spaced `grain` apart. */
-  swell: number
-  jag: number
-  grain: number
-  top: string
+type Range = {
+  /** Where the range meets the cloud. */
+  floor: number
+  /** How the sides fall: above 1 a pointed cone, below 1 a tower with steep walls. */
+  steep: number
+  rock: string
+  /** The hazier color the rock takes on near the cloud. */
   foot: string
-  forest?: Forest
+  /** The color of the faces turned to the sun, on the near ranges. */
+  lit?: string
+  /** Firs on the ledges: how far apart, and how tall. */
+  firs?: { spacing: number; low: number; high: number }
+  peaks: readonly Peak[]
 }
 
-export const RIDGES: readonly Ridge[] = [
-  { base: 478, lift: 0, swell: 10, jag: 170, grain: 230, top: '#f8c48c', foot: '#fcdcae' },
-  { base: 512, lift: 0, swell: 12, jag: 255, grain: 150, top: '#f5b174', foot: '#fbd3a0' },
-  { base: 548, lift: 0, swell: 18, jag: 115, grain: 110, top: '#ef9a5c', foot: '#f8c490' },
-  { base: 590, lift: 0, swell: 26, jag: 62, grain: 80, top: '#e57f49', foot: '#f3ae7a' },
-  { base: 636, lift: 14, swell: 32, jag: 22, grain: 60, top: '#d4623c', foot: '#ea9866', forest: { spacing: 12, low: 7, high: 17, tiers: 2 } },
-  { base: 690, lift: 50, swell: 34, jag: 0, grain: 60, top: '#b74a36', foot: '#d97a52', forest: { spacing: 14, low: 14, high: 34, tiers: 3 } },
-  { base: 752, lift: 100, swell: 30, jag: 0, grain: 60, top: '#923635', foot: '#bd5c45', forest: { spacing: 19, low: 26, high: 62, tiers: 5 } },
-  { base: 872, lift: 232, swell: 24, jag: 0, grain: 60, top: '#66242d', foot: '#8c3539', forest: { spacing: 26, low: 40, high: 130, tiers: 9 } },
-  { base: 996, lift: 366, swell: 12, jag: 0, grain: 60, top: '#30131b', foot: '#3e1922' },
+export const RANGES: readonly Range[] = [
+  {
+    floor: 704,
+    steep: 1.3,
+    rock: '#f5cda2',
+    foot: '#fadfbe',
+    peaks: [{ x: 330, reach: 250, rise: 250 }, { x: 590, reach: 150, rise: 100 }, { x: 870, reach: 170, rise: 60 }, { x: 1150, reach: 210, rise: 130 }, { x: 1590, reach: 260, rise: 330 }],
+  },
+  {
+    floor: 736,
+    steep: 1.15,
+    rock: '#edae7b',
+    foot: '#f6cda2',
+    peaks: [{ x: 190, reach: 210, rise: 340 }, { x: 470, reach: 130, rise: 160 }, { x: 1040, reach: 120, rise: 52 }, { x: 1300, reach: 150, rise: 190 }],
+  },
+  {
+    floor: 778,
+    steep: 0.95,
+    rock: '#c96a45',
+    foot: '#eeab7c',
+    lit: '#eb9a63',
+    firs: { spacing: 16, low: 6, high: 13 },
+    peaks: [{ x: 70, reach: 200, rise: 430 }, { x: 640, reach: 100, rise: 44 }, { x: 1560, reach: 210, rise: 500 }],
+  },
+  {
+    floor: 826,
+    steep: 0.8,
+    rock: '#8d3436',
+    foot: '#dd8d68',
+    lit: '#d6683f',
+    firs: { spacing: 13, low: 9, high: 24 },
+    peaks: [{ x: -20, reach: 190, rise: 540 }, { x: 320, reach: 96, rise: 150 }, { x: 1266, reach: 84, rise: 210 }, { x: 1466, reach: 196, rise: 580 }],
+  },
 ]
-
-export const NEAREST = RIDGES.length - 1
-const NODE_SHIFT = 100
 
 export type Skyline = (x: number) => number
 
-/** How high a layer's top edge stands at each x (a smaller number is higher up). */
+/** How high a range stands at each x (a smaller number is higher up). Between peaks it sinks under the cloud. */
 export function skyline(seed: number, index: number): Skyline {
-  const ridge = RIDGES[index]!
-  const turn = (salt: number) => chance(seed, index, salt) * Math.PI * 2
-  const [first, second, third] = [turn(1), turn(2), turn(3)]
+  const range = RANGES[index]!
   const crag = (spacing: number, salt: number) => (x: number) => {
-    const at = x / spacing + NODE_SHIFT
+    const at = x / spacing + 100
     const node = Math.floor(at)
 
     return between(chance(seed, index * 97 + node, salt), chance(seed, index * 97 + node + 1, salt), at - node)
   }
-  const broad = crag(ridge.grain, 4)
-  const fine = crag(ridge.grain / 3.4, 5)
+  const broad = crag(70, 4)
+  const middle = crag(24, 5)
+  const fine = crag(9, 9)
+  // A ridged value: highest halfway between two points, so it makes side summits with notches between them.
+  const ridged = (value: number) => 1 - Math.abs(2 * value - 1)
+  const peaks = range.peaks.map((peak, order) => {
+    const lean = chance(seed, index * 11 + order, 10)
+
+    return {
+      x: peak.x + between(-22, 22, chance(seed, index * 11 + order, 6)),
+      left: peak.reach * between(0.75, 1.25, lean),
+      right: peak.reach * between(1.25, 0.75, lean),
+      rise: peak.rise * between(0.9, 1.12, chance(seed, index * 11 + order, 7)),
+    }
+  })
 
   return x => {
-    const side = (x - WIDTH / 2) / (WIDTH / 2)
-    const roll = 0.5 * Math.sin(x / 260 + first) + 0.3 * Math.sin(x / 110 + second) + 0.2 * Math.sin(x / 47 + third)
-    // The far peaks stand lower near the sun, so it always sits in a gap between them.
-    const gap = Math.min(1, 0.2 + Math.abs(x - SUN.x) / 320)
+    let height = -60
 
-    return ridge.base - ridge.lift * side * side - ridge.swell * roll - ridge.jag * gap * (0.8 * broad(x) ** 1.5 + 0.2 * fine(x))
-  }
-}
+    for (const peak of peaks) {
+      const off = Math.abs(x - peak.x) / (x < peak.x ? peak.left : peak.right)
 
-function edge(line: Skyline, step: number): string {
-  const points: string[] = []
+      if (off < 1) {
+        const body = peak.rise * (1 - off) ** range.steep * (0.62 + 0.42 * ridged(broad(x)))
+        const teeth = peak.rise * 0.07 * ridged(middle(x)) + 5 * fine(x)
 
-  for (let x = -20; x <= WIDTH + 20; x += step) {
-    points.push(`${Math.round(x)} ${Math.round(line(x))}`)
-  }
-
-  return points.join('L')
-}
-
-/** The forest on a layer's edge: firs of uneven height, with gaps, in the layer's own color. */
-function forest(seed: number, index: number, line: Skyline, wood: Forest, thin: number): string {
-  const spacing = wood.spacing * thin
-  let trees = ''
-
-  for (let tree = 0; tree * spacing < WIDTH + 40; tree += 1) {
-    const x = -20 + (tree + chance(seed, tree, 41 + index)) * spacing
-    const isClearing = Math.sin(x / 170 + chance(seed, index, 42) * 6) > 0.72
-
-    if (isClearing && chance(seed, tree, 43 + index) < 0.8) {
-      continue
+        height = Math.max(height, body + teeth * Math.min(1, off * 5) * (1 - off))
+      }
     }
 
-    // Trees in the middle of the valley are farther off, so they are smaller. That also keeps the middle light.
-    const far = 0.45 + 0.55 * Math.min(1, (Math.abs(x - WIDTH / 2) / (WIDTH / 2)) * 2)
-    const height = between(wood.low, wood.high, chance(seed, tree, 44 + index) ** 1.6) * far
+    return range.floor - height
+  }
+}
 
-    trees += fir(seed, index * 1000 + tree, x, line(x) + 4, height, wood.tiers, between(0.8, 1.3, chance(seed, tree, 45 + index)))
+/** Where each peak of a range tops out, after the seed has moved it a little. */
+function summits(seed: number, index: number): { x: number; reach: number }[] {
+  return RANGES[index]!.peaks.map((peak, order) => ({ x: peak.x + between(-22, 22, chance(seed, index * 11 + order, 6)), reach: peak.reach }))
+}
+
+export function rangeFills(): string {
+  return RANGES.map((range, index) => {
+    const crest = range.floor - Math.max(...range.peaks.map(peak => peak.rise)) * 1.1
+    const fade = (id: string, colour: string, end: string) =>
+      `<linearGradient id="${id}${index}" gradientUnits="userSpaceOnUse" x1="0" y1="${Math.round(crest)}" x2="0" y2="${range.floor + 30}"><stop offset=".4" stop-color="${colour}"/><stop offset="1" ${end}/></linearGradient>`
+
+    return (
+      fade('rock', range.rock, `stop-color="${range.foot}"`) +
+      (range.lit === undefined ? '' : fade('lit', range.lit, `stop-color="${range.lit}" stop-opacity="0"`))
+    )
+  }).join('')
+}
+
+/** The faces turned to the sun: from each summit, the side toward the sun, down to a ragged line inside the rock. */
+function sunlit(seed: number, index: number, line: Skyline): string {
+  const floor = RANGES[index]!.floor
+  let faces = ''
+
+  summits(seed, index).forEach((summit, order) => {
+    const toward = SUN.x > summit.x ? 1 : -1
+    const top = line(summit.x)
+    const points: string[] = []
+
+    for (let step = 0; step <= summit.reach; step += 7) {
+      const x = summit.x + toward * (summit.reach - step)
+
+      points.push(`${Math.round(x)} ${Math.round(line(x))}`)
+    }
+    // Back down from the summit along an inner ridge that wanders a little.
+    for (let step = 1; step <= 6; step += 1) {
+      const share = step / 6
+      const wander = between(-0.1, 0.16, chance(seed, index * 31 + order * 7 + step, 8)) * summit.reach
+
+      points.push(`${Math.round(summit.x + toward * (share * summit.reach * 0.22) + wander * share)} ${Math.round(between(top, floor + 30, share))}`)
+    }
+    faces += `M${points.join('L')}Z`
+  })
+
+  return `<path d="${faces}" fill="url(#lit${index})"/>`
+}
+
+/** Thin cracks that run down the rock from the skyline, so the faces read as stone and not as flat paper. */
+function cracks(seed: number, index: number, line: Skyline): string {
+  const floor = RANGES[index]!.floor
+  let lines = ''
+
+  summits(seed, index).forEach((summit, order) => {
+    for (let crack = 0; crack < 9; crack += 1) {
+      const x = summit.x + between(-0.7, 0.7, chance(seed, index * 41 + order * 13 + crack, 12)) * summit.reach
+      const top = line(x)
+      const length = between(0.12, 0.34, chance(seed, index * 41 + order * 13 + crack, 13)) * (floor - top)
+
+      if (floor - top < 90) {
+        continue
+      }
+
+      const lean = Math.round(between(-0.22, 0.22, chance(seed, index * 41 + order * 13 + crack, 14)) * length)
+
+      lines += `M${Math.round(x)} ${Math.round(top + 6)}l${Math.round(lean / 2)} ${Math.round(length * 0.45)}l${lean} ${Math.round(length * 0.55)}`
+    }
+  })
+
+  return `<path d="${lines}" fill="none" stroke="#5e1f2b" stroke-opacity=".3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`
+}
+
+/** Firs on the ledges, small against the rock, which is what shows how big the peaks are. */
+function ledgeFirs(seed: number, index: number, line: Skyline, wood: { spacing: number; low: number; high: number }): string {
+  const floor = RANGES[index]!.floor
+  let trees = ''
+
+  for (let tree = 0; tree * wood.spacing < WIDTH + 40; tree += 1) {
+    const x = -20 + (tree + chance(seed, tree, 41 + index)) * wood.spacing
+    const foot = line(x)
+
+    if (foot > floor - 26 || chance(seed, tree, 43 + index) < 0.42) {
+      continue
+    }
+    trees += fir(seed, index * 1000 + tree, x, foot + 3, between(wood.low, wood.high, chance(seed, tree, 44 + index) ** 1.5), 3, 1.1)
   }
 
   return trees
 }
 
-export function ridgeFills(): string {
-  return RIDGES.map((ridge, index) => {
-    const crest = ridge.base - ridge.jag - ridge.swell - ridge.lift
-
-    return `<linearGradient id="ridge${index}" gradientUnits="userSpaceOnUse" x1="0" y1="${crest}" x2="0" y2="${ridge.base + 96}"><stop offset=".35" stop-color="${ridge.top}"/><stop offset="1" stop-color="${ridge.foot}"/></linearGradient>`
-  }).join('')
-}
-
-/** One layer. The bare far ranges get a thin bright edge where the low sun catches them. `thin` spaces the forest out. */
-export function ridge(seed: number, index: number, thin = 1): string {
-  const shape = RIDGES[index]!
+/** One range of peaks, with its sunlit faces and its firs. */
+export function range(seed: number, index: number): string {
+  const shape = RANGES[index]!
   const line = skyline(seed, index)
-  const trees = shape.forest === undefined ? '' : forest(seed, index, line, shape.forest, thin)
-  const glow = shape.forest === undefined && index !== NEAREST ? ' stroke="#ffe9bb" stroke-opacity=".6" stroke-width="1.4"' : ''
+  const edge: string[] = []
 
-  return `<path d="M-20 1010L${edge(line, shape.jag > 0 ? 8 : 14)}L${WIDTH + 20} 1010Z${trees}" fill="url(#ridge${index})"${glow}/>`
-}
-
-/** A river that winds toward us through the valley and carries the sky's light. Sun glitters on it. */
-export function river(seed: number): string {
-  let glints = ''
-
-  for (let index = 0; index < 14; index += 1) {
-    const along = chance(seed, index, 31)
-    const x = between(930, 700, along) + between(-40, 40, chance(seed, index, 32))
-    const y = between(776, 900, along)
-    const pace = between(1.6, 4.2, chance(seed, index, 34))
-
-    glints += `<path class="glint" style="animation-duration:${pace.toFixed(1)}s;animation-delay:-${(pace * chance(seed, index, 35)).toFixed(1)}s" d="M${Math.round(x)} ${Math.round(y)}h${Math.round(between(5, 18, chance(seed, index, 33)))}"/>`
+  for (let x = -40; x <= WIDTH + 40; x += 6) {
+    edge.push(`${x} ${Math.round(line(x))}`)
   }
 
   return (
-    '<path d="M930 756C880 768 990 784 900 802C800 822 700 842 520 930L900 930C960 880 1070 830 1040 798C1026 780 962 772 956 756Z" fill="url(#river)"/>' +
-    `<g stroke="#fffaf0" stroke-width="1.5" stroke-linecap="round">${glints}</g>`
+    `<path d="M-40 ${shape.floor + 70}L${edge.join('L')}L${WIDTH + 40} ${shape.floor + 70}Z" fill="url(#rock${index})"/>` +
+    (shape.lit === undefined ? '' : sunlit(seed, index, line) + cracks(seed, index, line)) +
+    (shape.firs === undefined ? '' : `<path d="${ledgeFirs(seed, index, line, shape.firs)}" fill="#4a1a26"/>`)
   )
 }
 
-/** A bank of sunlit fog that fills the valley and drifts slowly sideways. The ridges stand out of it at the sides. */
-export function fog(x: number, y: number, width: number, depth: number, pace: number, strength = 1): string {
-  return `<ellipse class="mist" style="animation-duration:${pace}s;animation-delay:-${Math.round(pace / 3)}s" cx="${x}" cy="${y}" rx="${width}" ry="${depth}" fill="url(#mist)" fill-opacity="${strength}"/>`
+/** A soft ribbon of mist that lies across the waist of a peak and drifts a little. */
+export function wisp(x: number, y: number, half: number, thick: number, pace: number): string {
+  return `<ellipse class="roll" style="animation-duration:${pace}s;animation-delay:-${Math.round(pace / 3)}s" cx="${x}" cy="${y}" rx="${half}" ry="${thick}" fill="url(#mist)"/>`
+}
+
+/** The dark ledge we stand on. It rises only at the two bottom corners and stays out of the middle. */
+export function ledge(x: number): number {
+  const side = Math.abs(x - WIDTH / 2) / (WIDTH / 2)
+
+  return 1064 - 400 * side ** 3.2 - 8 * Math.sin(x / 37)
+}
+
+export function ledgeShape(): string {
+  const edge: string[] = []
+
+  for (let x = -20; x <= WIDTH + 20; x += 20) {
+    edge.push(`${x} ${Math.round(ledge(x))}`)
+  }
+
+  return `<path d="M-20 1010L${edge.join('L')}L${WIDTH + 20} 1010Z" fill="#30131b"/>`
 }
