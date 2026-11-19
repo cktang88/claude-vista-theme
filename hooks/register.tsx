@@ -93,6 +93,13 @@ export const register: Register = on => {
     return result
   })
 
+  // A new session starts before its window attaches, and the theme set then is not drawn. Set it again on attach.
+  on('session.attach', { surface: 'desktop' }, async ($, e, next) => {
+    const result = await next(e)
+    await show($).catch(() => undefined)
+    return result
+  })
+
   on('command.run', { command: COMMAND }, async ($, e) => {
     if (e.args.trim().toLowerCase() === 'off') {
       await $.theme.clear()
