@@ -84,11 +84,8 @@ export const register: Register = on => {
     })
     await pickSeed($)
 
-    const said = await show($)
-
-    if (said !== 'The vista theme is on.') {
-      void $.ui.toast(said)
-    }
+    // Not drawn yet is normal here: the window attaches later, and `session.attach` sets the theme again.
+    await show($)
 
     return result
   })
